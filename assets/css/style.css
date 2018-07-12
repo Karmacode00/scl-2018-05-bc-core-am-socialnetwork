@@ -166,7 +166,7 @@ div.content {
 .btn{
 	margin-bottom: 0.5em;
 }
-#iniciar{
+.iniciar{
 	display: inherit;
 	line-height: 2;
 	padding: 0.5em;
