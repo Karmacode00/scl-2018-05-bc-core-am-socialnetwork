@@ -119,7 +119,9 @@ p {
   text-align: center;
 }
 #logo-login{
-  height: 9em;
+	height: 9em;
+	margin: 6em auto 12px;
+
 }
 h1{
   text-align: center;

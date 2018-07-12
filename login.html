@@ -35,7 +35,7 @@
         <button id="iniciar" type="button" class=" btn btn-default">
           <i class="fab fa-facebook-f"></i> Inicar sesión con Facebook</button>
         <button id="iniciar" type="button" class="btn btn-default">
-          <i class="fab fa-google"></i>  Iniciar sesion con Google</button>
+          <i class="fab fa-google"></i> Iniciar sesion con Google</button>
         <button type="submit" class="btn btn-primary">Login</button>
         <hr>
         <button type="button" class="btn btn-link">Signup</button>
@@ -49,9 +49,20 @@
 
 
 
-
-
-
+  <!-- js firebase -->
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAsyUFU3YRE0ZFQBsX06RIr0jkZIwNDZrI",
+      authDomain: "foodgram-65316.firebaseapp.com",
+      databaseURL: "https://foodgram-65316.firebaseio.com",
+      projectId: "foodgram-65316",
+      storageBucket: "foodgram-65316.appspot.com",
+      messagingSenderId: "186832450814"
+    };
+    firebase.initializeApp(config);
+  </script>
   <!-- js bootstrap -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -59,6 +70,7 @@
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
     crossorigin="anonymous"></script>
+  <script type="text/javascript" src="assets/js/main.js"></script>
 </body>
 
 </html>
