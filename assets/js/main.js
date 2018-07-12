@@ -2,9 +2,12 @@
 let contadorPublicacion = [];
 const heart = document.querySelector('i');
 heart.addEventListener('click', ()=> {
-  heart.classList.toggle('red');
-  contadorPublicacion++;
-  contador.innerHTML = contadorPublicacion;
+  if (heart.classList.toggle('red')){
+    contadorPublicacion++;
+  }else{
+    contadorPublicacion--;
+  }
+  return contador.innerHTML = contadorPublicacion;
 })
 
 //Crear nuevo comentario, me gusta, eliminar
