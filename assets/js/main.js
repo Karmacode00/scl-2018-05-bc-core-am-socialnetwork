@@ -2,8 +2,8 @@
 function register(){
     const emailValue = email.value;
     const passwordValue = password.value; 
-    const usuarioValue =  usuario.value;
-    firebase.auth().createUserWithEmailAndPassword(emailValue, passwordValue,usuarioValue)
+    // const usuarioValue =  usuario.value;
+    firebase.auth().createUserWithEmailAndPassword(emailValue, passwordValue)
         .then(()=>{
             console.log("Usuario registrado");
         })
