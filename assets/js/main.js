@@ -1,7 +1,10 @@
-//Me gusta publicacion
-const heart = document.getElementsByClassName('fa-heart');
+//Me gusta y contador publicacion
+let contadorPublicacion = [];
+const heart = document.querySelector('i');
 heart.addEventListener('click', ()=> {
   heart.classList.toggle('red');
+  contadorPublicacion++;
+  contador.innerHTML = contadorPublicacion;
 })
 
 //Crear nuevo comentario, me gusta, eliminar
