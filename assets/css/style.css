@@ -187,3 +187,8 @@ div.content {
 	line-height: 20px;
 	font-size: 17px;
 }
+
+
+textarea {
+	resize: none;
+}

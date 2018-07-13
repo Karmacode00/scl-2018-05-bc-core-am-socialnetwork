@@ -38,10 +38,23 @@
 				<div class="col-12 img">
 					<img src="assets/img/cel-lisboa-60315-e1504660981599.jpg">
 					<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus ad exercitationem, unde voluptates ea quas, cumque autem aliquam ratione alias saepe aliquid ipsa iusto molestias, laborum totam? Modi, in cumque.</p>
-				<!-- Contenedor de las publicaciones -->
+			
+							<!-- Me gusta -->
+							<div>
+								<i class="fas fa-heart"></i><span id="contador"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+					<!-- Contenedor de las publicaciones -->
 				<div class="container">
 
 				</div>
+
+		<section>
+			<div class="container col-6">
 					<!-- Seleccionar imagen -->
 					<div class="input-group mb-3">
 						<div class="custom-file">
@@ -51,15 +64,13 @@
 						<div class="input-group-append">
 							<span class="input-group-text" id="">Upload</span>
 						</div>
+						
 					</div>
-				<!-- Me gusta -->
-					<div>
-						<i class="fas fa-heart"></i><span id="contador"></span>
-					</div>
+					<textarea class="txt" id="publication" placeholder="Añade tu publicación..."></textarea>
+					<button id="publicar">Publicar</button>
 				</div>
-			</div>
-		</div>
-	</section>
+		</section>
+
 
 	<!-- Sección textarea, botón y contenedor mensajes -->
 	<section class="center">
@@ -75,6 +86,13 @@
 						<i class="fas fa-plus" aria-hidden="true"></i> Agregar</button>
 				</div>
 			</div>
+
+			<progress value="0" max="100" id="uploader"></progress>
+<input type="file" value="upload" id="fileButton"><br>
+<div class="col-md-4">
+<input type="text" class="form-control" id="fileLocation"></div>
+
+
 			<!-- contenedor comentarios -->
 			<div class="row">
 				<div class="col-12" id="cont"></div>
