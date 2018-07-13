@@ -91,11 +91,11 @@ boton.addEventListener('click', () => {
     
     //corazon
     const heart = document.createElement('i');
-    const contadorheart = document.createElement('span')
-  //falta contador comentario!!!!!---------
+    const contadorheart = document.createElement('span');
+    heart.appendChild(contadorheart);
     heart.classList.add('fa', 'fa-heart', 'heart');
     //evento click corazon
-    let contadorPublicacion = [];
+    let contadorComentario = [];
     heart.addEventListener('click', ()=> {
       if (heart.classList.toggle('red')){
         contadorComentario++;
@@ -104,6 +104,8 @@ boton.addEventListener('click', () => {
       }
       return contadorheart.innerHTML = contadorComentario;
     })
+
+    //Editar
     
     //Basura
     const trash = document.createElement('i');
@@ -120,8 +122,9 @@ boton.addEventListener('click', () => {
     const contenedorElemento = document.createElement('p');
     let textNewComment = document.createTextNode(comments);
     contenedorElemento.appendChild(textNewComment);
-    newComments.appendChild(heart);
     newComments.appendChild(trash);
+    newComments.appendChild(heart);
     newComments.appendChild(contenedorElemento);
     cont.appendChild(newComments);
-}) 
+  
+})
