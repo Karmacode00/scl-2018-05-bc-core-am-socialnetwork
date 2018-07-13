@@ -82,20 +82,15 @@ textarea {
 	background-color: #FFF;
 }
 
-.heart, .trash {
+.heart, .trash, .fa-pencil-alt {
 	margin:1em;
 	float: right;
 	cursor: pointer;
 }
 
-.trash:hover {
+.trash:hover, .fa-pencil-alt:hover {
 	color: #1DA1F2;
 	cursor: pointer;
-}
-
-.strike-out {
-	text-decoration: line-through;
-	color: #1DA1F2;
 }
 
 .red {

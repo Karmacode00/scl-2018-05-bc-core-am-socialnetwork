@@ -106,6 +106,13 @@ boton.addEventListener('click', () => {
     })
 
     //Editar
+    const edit = document.createElement('i');
+    edit.classList.add('fas', 'fa-pencil-alt');
+    //Evento click editar
+    edit.addEventListener('click', ()=> {
+      contenedorElemento.contentEditable = true;
+
+    })
     
     //Basura
     const trash = document.createElement('i');
@@ -122,8 +129,9 @@ boton.addEventListener('click', () => {
     const contenedorElemento = document.createElement('p');
     let textNewComment = document.createTextNode(comments);
     contenedorElemento.appendChild(textNewComment);
-    newComments.appendChild(trash);
     newComments.appendChild(heart);
+    newComments.appendChild(edit);
+    newComments.appendChild(trash);
     newComments.appendChild(contenedorElemento);
     cont.appendChild(newComments);
   
