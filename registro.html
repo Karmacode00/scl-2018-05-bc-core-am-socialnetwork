@@ -1,6 +1,5 @@
-
-
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -38,12 +37,27 @@
           <label for="exampleInputPassword1">Contraseña</label>
           <input type="password" class="form-control" id="password" placeholder="Password" pattern="[0-9]{8}">
         </div>
-        <button type="submit" class="btn btn-primary">Registrate</button>
+        <button type="button" class="btn btn-primary" onclick="register()">Registrate</button>
         <hr>
       </form>
     </div>
     </span>
   </div>
+
+  <!-- js firebase -->
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAsyUFU3YRE0ZFQBsX06RIr0jkZIwNDZrI",
+      authDomain: "foodgram-65316.firebaseapp.com",
+      databaseURL: "https://foodgram-65316.firebaseio.com",
+      projectId: "foodgram-65316",
+      storageBucket: "foodgram-65316.appspot.com",
+      messagingSenderId: "186832450814"
+    };
+    firebase.initializeApp(config);
+  </script>
 
 
   <!-- js bootstrap -->
@@ -53,8 +67,6 @@
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
     crossorigin="anonymous"></script>
-    <script src="../src/assets/js/main.js"></script>
+  <script src="../src/assets/js/main.js"></script>
 
 </body>
-
-
