@@ -116,6 +116,8 @@ boton.addEventListener('click', () => {
           let confirmarEditar = confirm('¿Estas seguro que quieres modificar tu comentario?');
           if (confirmarEditar == true) {
             contenedorElemento.removeAttribute('contentEditable');
+          } else {
+
           }
         }
       })
@@ -141,5 +143,4 @@ boton.addEventListener('click', () => {
     newComments.appendChild(trash);
     newComments.appendChild(contenedorElemento);
     cont.appendChild(newComments);
-  
 })
