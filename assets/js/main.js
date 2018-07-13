@@ -111,7 +111,14 @@ boton.addEventListener('click', () => {
     //Evento click editar
     edit.addEventListener('click', ()=> {
       contenedorElemento.contentEditable = true;
-
+      contenedorElemento.addEventListener('keydown', (event)=> {
+        if (event.which == 13){
+          let confirmarEditar = confirm('¿Estas seguro que quieres modificar tu comentario?');
+          if (confirmarEditar == true) {
+            contenedorElemento.removeAttribute('contentEditable');
+          }
+        }
+      })
     })
     
     //Basura
