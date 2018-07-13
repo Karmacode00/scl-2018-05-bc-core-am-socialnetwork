@@ -26,10 +26,18 @@ boton.addEventListener('click', () => {
     
     //corazon
     const heart = document.createElement('i');
+    const contadorheart = document.createElement('span')
+  //falta contador comentario!!!!!---------
     heart.classList.add('fa', 'fa-heart', 'heart');
     //evento click corazon
+    let contadorPublicacion = [];
     heart.addEventListener('click', ()=> {
-      heart.classList.toggle('red');
+      if (heart.classList.toggle('red')){
+        contadorComentario++;
+      }else{
+        contadorComentario--;
+      }
+      return contadorheart.innerHTML = contadorComentario;
     })
     
     //Basura
