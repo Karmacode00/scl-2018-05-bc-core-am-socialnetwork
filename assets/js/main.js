@@ -1,3 +1,4 @@
+
 // conexión firebase
 window.onload = ()=>{
     firebase.auth().onAuthStateChanged((user)=>{
@@ -63,11 +64,29 @@ function login(){
         });
   }
 
+<<<<<<< HEAD
 // //Me gusta publicacion
 // const heart = document.getElementsByClassName('fa-heart');
 // heart.addEventListener('click', ()=> {
 //   heart.classList.toggle('red');
 // })
+=======
+//Me gusta publicacion
+const heart = document.getElementsByClassName('fa-heart');
+
+//Me gusta y contador publicacion
+let contadorPublicacion = [];
+const heart = document.querySelector('i');
+
+heart.addEventListener('click', ()=> {
+  if (heart.classList.toggle('red')){
+    contadorPublicacion++;
+  }else{
+    contadorPublicacion--;
+  }
+  return contador.innerHTML = contadorPublicacion;
+})
+>>>>>>> 66704d89f1beadda08fe62229866336497e971b7
 
 // //Crear nuevo comentario, me gusta, eliminar
 // const boton = document.getElementById('btn');
@@ -83,6 +102,7 @@ function login(){
 //       return false;
 //     }
     
+<<<<<<< HEAD
 //     //corazon
 //     const heart = document.createElement('i');
 //     heart.classList.add('fa', 'fa-heart', 'heart');
@@ -90,6 +110,23 @@ function login(){
 //     heart.addEventListener('click', ()=> {
 //       heart.classList.toggle('red');
 //     })
+=======
+    //corazon
+    const heart = document.createElement('i');
+    const contadorheart = document.createElement('span')
+  //falta contador comentario!!!!!---------
+    heart.classList.add('fa', 'fa-heart', 'heart');
+    //evento click corazon
+    let contadorPublicacion = [];
+    heart.addEventListener('click', ()=> {
+      if (heart.classList.toggle('red')){
+        contadorComentario++;
+      }else{
+        contadorComentario--;
+      }
+      return contadorheart.innerHTML = contadorComentario;
+    })
+>>>>>>> 66704d89f1beadda08fe62229866336497e971b7
     
 //     //Basura
 //     const trash = document.createElement('i');
