@@ -1,4 +1,28 @@
 // conexión firebase
+/*window.onload = ()=>{
+    firebase.auth().onAuthStateChanged((user)=>{
+        if(user){
+            //Si estamos logueados
+            // loggedOut.style.display = "none";
+            // loggedIn.style.display = "block";
+            console.log("User > "+JSON.stringify(user));
+        }else{
+            //No estamos logueados
+            // loggedOut.style.display = "block";
+            // loggedIn.style.display = "none";
+            console.log('Usuario no logeado');
+        }
+    });
+    register();
+    login();
+    logout();
+    loginFacebook();
+    publicacion();
+    comentario();
+
+}
+*/
+
 function register(){
   const emailValue = email.value;
   const passwordValue = password.value; 
@@ -11,7 +35,7 @@ function register(){
       console.log("Error de firebase > "+error.code);
       console.log("Error de firebase, mensaje > "+error.message);
     });
-  }
+}
 
 function login(){
   const emailValue = email.value;
@@ -24,6 +48,14 @@ function login(){
     console.log("Error de firebase > "+error.code);
     console.log("Error de firebase, mensaje > "+error.message);
   });
+}
+
+function logout(){
+  firebase.auth().signOut()
+      .then(()=>{
+          console.log("Chao");
+      })
+      .catch();
 }
 
 function loginFacebook(){
@@ -41,6 +73,22 @@ function loginFacebook(){
     console.log("Error de firebase, mensaje > "+error.message);
   });
 }
+
+function loginFacebook(){
+    const provider = new firebase.auth.FacebookAuthProvider();
+    //provider.addScope("user_birthday"); tienen que pedirle permiso a facebook
+    provider.setCustomParameters({
+        'display': 'popup'
+    }); 
+    firebase.auth().signInWithPopup(provider)
+        .then(()=>{
+            console.log("Login con facebook");
+        })
+        .catch((error)=>{
+            console.log("Error de firebase > "+error.code);
+            console.log("Error de firebase, mensaje > "+error.message);
+        });
+  }
 
 //Me gusta publicacion
 function publicacion() {
@@ -66,12 +114,13 @@ function comentario() {
     const cont = document.getElementById('cont');
     const newComments = document.createElement('div');
 
-    //Para que aparezca si o si comentario
-    if(comments.length === 0 || comments === null){
-      alert ('Debes ingresar un mensaje');
-      return false;
-    }
+  //Para que aparezca si o si comentario
+  if(comments.length === 0 || comments === null){
+    alert ('Debes ingresar un mensaje');
+    return false;
+  }
     
+
     //corazon
     const heart = document.createElement('i');
     const contadorheart = document.createElement('span')
@@ -89,15 +138,15 @@ function comentario() {
     })
     
     //Basura
-    const trash = document.createElement('i');
-    trash.classList.add('fa', 'fa-trash', 'trash');
-    //Evento click basura
-    trash.addEventListener('click', ()=> {
-        let confirmarEliminar = confirm('¿Estas seguro de eliminar?');
-      if (confirmarEliminar == true) {
-        cont.removeChild(newComments);
-      }
-    })
+     const trash = document.createElement('i');
+     trash.classList.add('fa', 'fa-trash', 'trash');
+     //Evento click basura
+     trash.addEventListener('click', ()=> {
+         let confirmarEliminar = confirm('¿Estas seguro de eliminar?');
+       if (confirmarEliminar == true) {
+         cont.removeChild(newComments);
+       }
+     })
 
     //Crear p nuevo con comentario
     const contenedorElemento = document.createElement('p');
@@ -109,3 +158,4 @@ function comentario() {
     cont.appendChild(newComments);
 })
 }
+
