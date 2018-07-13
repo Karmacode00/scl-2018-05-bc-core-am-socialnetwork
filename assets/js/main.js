@@ -62,7 +62,29 @@ function loginFacebook(){
           console.log("Error de firebase, mensaje > "+error.message);
       });
 }
-
+function loginGoogle(){
+var provider = new firebase.auth.GoogleAuthProvider();
+provider.setCustomParameters({
+    'login_hint': 'user@example.com'
+  });
+  firebase.auth().signInWithPopup(provider).then(function(result) {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    // ...
+  }).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
+    
+}
 //Me gusta y contador publicacion
 let contadorPublicacion = [];
 const heart = document.querySelector('i');
@@ -85,7 +107,7 @@ const uploader = document.getElementById('uploader'),
 
  const file=e.target.files[0];
 
- const storageRef=firebase.storage().ref("'/fileLocation/'"+file.name);
+ const storageRef=firebase.storage().ref("'/fileLocation/'"+file.value);
  console.log(fileLocation);
 
  let task=storageRef.put(file);
