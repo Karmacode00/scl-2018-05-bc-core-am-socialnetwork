@@ -1,25 +1,25 @@
 //Crear publicación
 
-const uploader = document.getElementById('uploader'),
- fileButton=document.getElementById('fileButton');
+const uploader = document.getElementById('uploader');
+const fileButton = document.getElementById('fileButton');
  fileButton.addEventListener('change', function(e) {
- const file=e.target.files[0];
- const storageRef=firebase.storage().ref("'/fileLocation/'"+file.value);
+ const file = e.target.files[0];
+ const storageRef = firebase.storage().ref("'/fileLocation/'" + file.value);
  console.log(fileLocation);
- let task=storageRef.put(file);
+ let task = storageRef.put(file);
  task.on('state_changed',
-        function progress(snapshot){
-                let percentage=( snapshot.bytesTransferred / snapshot.totalBytes )*100;
-                uploader.value=percentage;
-        if (percentage==100){
-          alert("file uploaded Successfully");
-        }
-        },
-        function error(err){
-        },
-        function complete(){
-        }
-    );
+  function progress(snapshot){
+    let percentage=( snapshot.bytesTransferred / snapshot.totalBytes )*100;
+    uploader.value = percentage;
+    if (percentage==100){
+      alert("file uploaded Successfully");
+    }
+  },
+  function error(err){
+  },
+  function complete(){
+    }
+  );
 });
 
 /* Ejemplo en documentación de firebase
@@ -69,7 +69,7 @@ uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
 */
 
 //Crear nuevo comentario, me gusta, eliminar
-const boton = document.getElementById('btn');
+const boton = document.getElementById('btncomentario');
 boton.addEventListener('click', () => {
     let comments = document.getElementById('comment').value;
     document.getElementById('comment').value = '';
