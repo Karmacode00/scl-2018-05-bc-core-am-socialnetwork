@@ -161,12 +161,19 @@ div.content {
 .btn{
 	margin-bottom: 0.5em;
 }
+.facebook{
+	background-color: #29487d;
+}
+.google{
+	background-color: red;
+}
 .iniciar{
 	display: inherit;
 	line-height: 2;
 	padding: 0.5em;
 	word-spacing: 3px;
 }
+
 
 /* Estilo de Registro */
 /* =================================== */
