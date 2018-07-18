@@ -64,7 +64,7 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
           </div>
           <div class="row">
             <div class="col-12">
-              <button type="submit" class="btn" id="btncomentario">
+              <button type="submit" class="btn" id="btncomentario" onclick="comentar()">
                 <i class="fas fa-plus" aria-hidden="true"></i> Comentar</button>
             </div>
           </div>
