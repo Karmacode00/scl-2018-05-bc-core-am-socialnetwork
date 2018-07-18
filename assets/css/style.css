@@ -42,7 +42,7 @@ textarea {
 	margin: 0 auto;
 }
 
-.btn {
+#btn {
 	background-color: #66AEC7;
 	border: 0px;
 	cursor: pointer;
@@ -54,15 +54,15 @@ textarea {
 	color: #FFF;
 }
 
-.btn:hover {
+#btn:hover {
 	background-color: #5590A6;
 }
 
-.btn:focus, textarea:focus{
+#btn:focus, textarea:focus{
 	outline: none;
 }
 
-.cont {
+#cont {
 	border-radius: 0.4em;
 	margin: 0 auto;
 	color: #4E4D53;
@@ -161,12 +161,19 @@ div.content {
 .btn{
 	margin-bottom: 0.5em;
 }
+.facebook{
+	background-color: #29487d;
+}
+.google{
+	background-color: red;
+}
 .iniciar{
 	display: inherit;
 	line-height: 2;
 	padding: 0.5em;
 	word-spacing: 3px;
 }
+
 
 /* Estilo de Registro */
 /* =================================== */

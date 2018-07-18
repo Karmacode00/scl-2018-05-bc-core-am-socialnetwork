@@ -56,6 +56,9 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
         <h5 class="card-title">${doc.data().title}</h5>
         <p class="card-text">${doc.data().text}</p>
         <i class="fas fa-trash-alt" onclick="eliminar('${doc.id}')"></i>
+        <i class="fas fa-pencil-alt"></i>
+        <button class="btn btn-info" id="btnEditar" onclick="editar('${doc.data().img}','${doc.data().title}','${doc.data().text}')">Editar</button>
+
       </div>
       <section class="center">
         <div class="container">
@@ -79,7 +82,38 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
   });
 });
 
-//borrar datos
+//Editar publicacion
+function editar(id, titulopublicacion, publicacion, url) {
+
+  document.getElementById('titulopublicacion').value = titulopublicacion;
+  document.getElementById('publicacion').value = publicacion;
+  document.getElementById('url').value = url;
+
+let editarRef = db.collection("publicacion").doc(id);
+
+let boton = document.getElementById('btnEditar');
+
+let titulopublicacion = document.getElementById('titulopublicacion').value;
+let publicacion = document.getElementById('publicacion').value;
+let url = document.getElementById('url').value;
+
+// Set the "capital" field of the city 'DC'
+return editarRef.update({
+  title: titulopublicacion,
+  text: publicacion,
+  img: url
+})
+.then(function() {
+    console.log("Document successfully updated!");
+    boton.innerHTML = "Guardar";
+})
+.catch(function(error) {
+    // The document probably doesn't exist.
+    console.error("Error updating document: ", error);
+});
+
+}
+
 function eliminar(id) {
   let confirmarEliminar = confirm('¿Estas seguro de eliminar?');
   if (confirmarEliminar == true) {
@@ -90,3 +124,4 @@ function eliminar(id) {
     });
   }
 }
+
