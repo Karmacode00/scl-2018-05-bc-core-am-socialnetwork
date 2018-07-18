@@ -24,7 +24,9 @@ function guardar(){
     .then(url => {
         console.log("URL del archivo > "+url);
         const titulopublicacion = document.getElementById('titulopublicacion').value;
+        document.getElementById('titulopublicacion').value = '';
         const publicacion = document.getElementById('publicacion').value;
+        document.getElementById('publicacion').value = '';
   
         db.collection("publicacion").add({  
           title: titulopublicacion,
