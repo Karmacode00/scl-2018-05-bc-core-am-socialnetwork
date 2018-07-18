@@ -6,11 +6,15 @@ window.onload = ()=>{
           // loggedOut.style.display = "none";
           // loggedIn.style.display = "block";
           console.log("User > "+JSON.stringify(user));
+          {window.location="/src/index.html"}
+          alert("Bienvenido(a)")
       }else{
           //No estamos logueados
           // loggedOut.style.display = "block";
           // loggedIn.style.display = "none";
           console.log('Usuario no logeado');
+          alert("Iniciar Sesión")
+          
       }
   });
 }
@@ -33,6 +37,7 @@ function login(){
   firebase.auth().signInWithEmailAndPassword(emailValue, passwordValue)
       .then(()=>{
           console.log("Usuario con login exitoso");
+        //   {window.location="/src/index.html"}
       })
       .catch((error)=>{
           console.log("Error de firebase > "+error.code);
@@ -46,7 +51,6 @@ function logout(){
       })
       .catch();
 }
-
 function loginFacebook(){
   const provider = new firebase.auth.FacebookAuthProvider();
   //provider.addScope("user_birthday"); tienen que pedirle permiso a facebook
@@ -56,6 +60,7 @@ function loginFacebook(){
   firebase.auth().signInWithPopup(provider)
       .then(()=>{
           console.log("Login con facebook");
+        //   {window.location="/src/index.html"}
       })
       .catch((error)=>{
           console.log("Error de firebase > "+error.code);
@@ -67,13 +72,17 @@ var provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({
     'login_hint': 'user@example.com'
   });
-  firebase.auth().signInWithPopup(provider).then(function(result) {
+  firebase.auth().signInWithPopup(provider)
+  .then((result) =>{
+     
     // This gives you a Google Access Token. You can use it to access the Google API.
     var token = result.credential.accessToken;
     // The signed-in user info.
     var user = result.user;
     // ...
-  }).catch(function(error) {
+     console.log("Login con Google");
+    //  {window.location="/src/index.html"}
+  }).catch((error) => {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;

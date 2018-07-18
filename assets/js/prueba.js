@@ -53,9 +53,10 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
       <img class="card-img-top" src="${doc.data().img}"text=Image cap" alt="Card image cap">
         <h5 class="card-title">${doc.data().title}</h5>
         <p class="card-text">${doc.data().text}</p>
-        <i class="fas fa-trash-alt"></i>
+        <i class="fas fa-trash-alt" onclick="eliminar('${doc.id}')"></i>
         <i class="fas fa-pencil-alt"></i>
         <button class="btn btn-info" id="btnEditar" onclick="editar('${doc.data().img}','${doc.data().title}','${doc.data().text}')">Editar</button>
+
       </div>
       <section class="center">
         <div class="container">
@@ -78,14 +79,12 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
       `
   });
 });
-
 //borrar datos
 db.collection("publicacion").doc("DC").delete().then(function() {
   console.log("Document successfully deleted!");
 }).catch(function(error) {
   console.error("Error removing document: ", error);
 });
-
 
 //Editar publicacion
 
@@ -119,3 +118,15 @@ return editarRef.update({
 });
 
 }
+
+function eliminar(id) {
+  let confirmarEliminar = confirm('¿Estas seguro de eliminar?');
+  if (confirmarEliminar == true) {
+    db.collection("publicacion").doc(id).delete().then(function() {
+    console.log("Document successfully deleted!");
+    }).catch(function(error) {
+    console.error("Error removing document: ", error);
+    });
+  }
+}
+
