@@ -1,3 +1,11 @@
+// Cerrar sesión
+function logout(){
+  firebase.auth().signOut()
+      .then(()=>{
+          console.log("Chao");
+      })
+      .catch();
+}
 //Crear nuevo comentario, me gusta, eliminar
 
 function comentar() {

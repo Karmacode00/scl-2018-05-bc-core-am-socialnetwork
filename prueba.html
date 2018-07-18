@@ -18,9 +18,20 @@
 
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <title>Hello, world!</title>
+    <title>FoodGram</title>
   </head>
   <body>
+    	<!-- Mensaje de alerta -->
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				<strong>Bienvenido!</strong>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<!-- Botones -->
+			<button type="button" class="btn btn-link"><a href="../src/registro.html"> Registrarse</a></button>
+			<button type="button" class="btn btn-link"><a href="../src/login.html"> Iniciar Sesión</a></button>
+			<button type="button" class="btn btn-link" onclick="logout()">Cerrar Sesión</button>
     <div class="container-fluid">
       <h1>Agrega tu receta</h1>
       <div class="custom-file">

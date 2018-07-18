@@ -82,3 +82,12 @@ db.collection("publicacion").doc("DC").delete().then(function() {
 }).catch(function(error) {
   console.error("Error removing document: ", error);
 });
+
+// Cerrar sesión
+function logout(){
+  firebase.auth().signOut()
+      .then(()=>{
+          console.log("Chao");
+      })
+      .catch();
+}
