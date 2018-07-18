@@ -6,11 +6,15 @@ window.onload = ()=>{
           // loggedOut.style.display = "none";
           // loggedIn.style.display = "block";
           console.log("User > "+JSON.stringify(user));
+          {window.location="/src/index.html"}
+          alert("Bienvenido(a)")
       }else{
           //No estamos logueados
           // loggedOut.style.display = "block";
           // loggedIn.style.display = "none";
           console.log('Usuario no logeado');
+          alert("Iniciar Sesión")
+          
       }
   });
 }
@@ -47,7 +51,6 @@ function logout(){
       })
       .catch();
 }
-
 function loginFacebook(){
   const provider = new firebase.auth.FacebookAuthProvider();
   //provider.addScope("user_birthday"); tienen que pedirle permiso a facebook
