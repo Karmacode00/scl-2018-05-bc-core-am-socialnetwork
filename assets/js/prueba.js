@@ -53,7 +53,7 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
       <img class="card-img-top" src="${doc.data().img}"text=Image cap" alt="Card image cap">
         <h5 class="card-title">${doc.data().title}</h5>
         <p class="card-text">${doc.data().text}</p>
-        <i class="fas fa-trash-alt"></i>
+        <i class="fas fa-trash-alt" onclick="eliminar('${doc.id}')"></i>
       </div>
       <section class="center">
         <div class="container">
@@ -82,6 +82,7 @@ db.collection("publicacion").doc("DC").delete().then(function() {
 }).catch(function(error) {
   console.error("Error removing document: ", error);
 });
+<<<<<<< HEAD
 
 // Cerrar sesión
 function logout(){
@@ -91,3 +92,15 @@ function logout(){
       })
       .catch();
 }
+=======
+function eliminar(id) {
+  let confirmarEliminar = confirm('¿Estas seguro de eliminar?');
+  if (confirmarEliminar == true) {
+    db.collection("publicacion").doc(id).delete().then(function() {
+    console.log("Document successfully deleted!");
+    }).catch(function(error) {
+    console.error("Error removing document: ", error);
+    });
+  }
+}
+>>>>>>> 3b149669959b03d3f47c03c8a569d061f0e1f7ca
