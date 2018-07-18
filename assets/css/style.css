@@ -82,13 +82,13 @@ textarea {
 	background-color: #FFF;
 }
 
-.heart, .trash, .fa-pencil-alt {
+.heart, .fa-trash-alt, .fa-pencil-alt {
 	margin:1em;
 	float: right;
 	cursor: pointer;
 }
 
-.trash:hover, .fa-pencil-alt:hover {
+.fa-trash-alt:hover, .fa-pencil-alt:hover {
 	color: #1DA1F2;
 	cursor: pointer;
 }
@@ -161,12 +161,19 @@ div.content {
 .btn{
 	margin-bottom: 0.5em;
 }
+.facebook{
+	background-color: #29487d;
+}
+.google{
+	background-color: red;
+}
 .iniciar{
 	display: inherit;
 	line-height: 2;
 	padding: 0.5em;
 	word-spacing: 3px;
 }
+
 
 /* Estilo de Registro */
 /* =================================== */

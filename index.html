@@ -14,9 +14,13 @@
 	<!-- <link rel="stylesheet" type="text/css" href="assets/css/grid.css"> -->
 	<!-- Mi estilo css -->
 	<!-- <link rel="stylesheet" href="assets/css/main.css"> -->
+	<!-- Firestore -->
+	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
 </head>
 
 <body>
+
 	<!-- Sección header -->
 	<header>
 		<div class="container">
@@ -30,28 +34,20 @@
 		</div>
 	</header>		
 	<!-- Contenedor de las publicaciones -->
-				<div class="container">
-
-				</div>
-
-		<section>
-			<div class="container col-6">
-					<!-- Seleccionar imagen -->
-					<div class="input-group mb-3">
-						<div class="custom-file">
-							<input type="file" class="custom-file-input" id="inputGroupFile02">
-							<label class="custom-file-label" for="inputGroupFile02">Choose file</label>
-						</div>
-						<div class="input-group-append">
-							<span class="input-group-text" id="">Upload</span>
-						</div>
-						
-					</div>
-					<textarea class="txt" id="publication" placeholder="Añade tu publicación..."></textarea>
-					<button id="publicar">Publicar</button>
-				</div>
-		</section>
-
+	<section>
+		<div class="container col-6">
+			<!-- Seleccionar imagen -->
+			<progress value="0" max="100" id="uploader"></progress>
+			<input type="file" value="upload" id="fileButton"><br>
+			<div class="col-12">
+				<textarea class="txt" id="publicar" placeholder="Añade tu publicacion..."></textarea>
+			</div>
+			<div class="col-12">
+				<button type="submit" id="btnpublicar" class="btn">
+					<i class="fas fa-plus" aria-hidden="true"></i> Publicar</button>
+			</div>
+		</div>		
+	</section>
 
 	<!-- Sección textarea, botón y contenedor mensajes -->
 	<section class="center">
@@ -63,18 +59,11 @@
 			</div>
 			<div class="row">
 				<div class="col-12">
-					<button type="submit" id="btn">
+					<button type="submit" id="btn" onclick="sendMessage">
 						<i class="fas fa-plus" aria-hidden="true"></i> Agregar</button>
 				</div>
 			</div>
-
-			<progress value="0" max="100" id="uploader"></progress>
-<input type="file" value="upload" id="fileButton"><br>
-<div class="col-md-4">
-<input type="text" class="form-control" id="fileLocation"></div>
-
-
-			<!-- contenedor comentarios -->
+	<!-- contenedor comentarios -->
 			<div class="row">
 				<div class="col-12" id="cont"></div>
 			</div>
