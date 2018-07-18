@@ -79,9 +79,12 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
 
 //borrar datos
 function eliminar(id) {
-db.collection("publicacion").doc(id).delete().then(function() {
-  console.log("Document successfully deleted!");
-}).catch(function(error) {
-  console.error("Error removing document: ", error);
-});
+  let confirmarEliminar = confirm('¿Estas seguro de eliminar?');
+  if (confirmarEliminar == true) {
+    db.collection("publicacion").doc(id).delete().then(function() {
+    console.log("Document successfully deleted!");
+    }).catch(function(error) {
+    console.error("Error removing document: ", error);
+    });
+  }
 }
