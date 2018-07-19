@@ -55,7 +55,7 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
         <h5 class="card-title">${doc.data().title}</h5>
         <p class="card-text">${doc.data().text}</p>
         <i class="fas fa-trash-alt" onclick="eliminar('${doc.id}')"></i>
-        <i class="fas fa-heart" onclick="likes('${doc.id}')"></i>
+        <i class="fas fa-heart" onclick="likes('${doc.id}')">${doc.data().like}</i>
         <i class="fas fa-pencil-alt" onclick="editar('${doc.id}', '${doc.data().title}', '${doc.data().text}')"></i>
         
 
