@@ -27,6 +27,18 @@ function guardar(){
     document.getElementById('titulopublicacion').value = '';
     const publicacion = document.getElementById('publicacion').value;
     document.getElementById('publicacion').value = '';
+
+    db.collection("publicacion").add({  
+      title: titulopublicacion,
+      text: publicacion,
+      img: url,
+    })
+    .then(function(docRef) {
+      console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(function(error) {
+      console.error("Error adding document: ", error);
+    });
   });
 };
 
