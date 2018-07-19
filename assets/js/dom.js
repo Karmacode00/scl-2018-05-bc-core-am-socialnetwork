@@ -1,3 +1,4 @@
+/*
 //Crear nuevo comentario, me gusta, eliminar
 function comentar() {
   let comments = document.getElementById('comment').value;
@@ -65,3 +66,5 @@ function comentar() {
   cont.appendChild(newComments);
 
 }
+
+*/

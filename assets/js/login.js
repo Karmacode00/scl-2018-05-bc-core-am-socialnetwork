@@ -6,7 +6,7 @@ window.onload = ()=>{
       // loggedOut.style.display = "none";
       // loggedIn.style.display = "block";
       console.log("User > "+JSON.stringify(user));
-      {window.location="/src/prueba.html"}
+      {window.location="/src/index.html"}
       //   alert("Bienvenido(a)")
     }else{
       //No estamos logueados
@@ -30,6 +30,7 @@ function login(){
     console.log("Error de firebase > "+error.code);
     console.log("Error de firebase, mensaje > "+error.message);
   });
+  return false;
 }
 
 function loginFacebook(){
@@ -94,7 +95,7 @@ function register(){
   firebase.auth().createUserWithEmailAndPassword(emailValue, passwordValue)
   .then(()=>{
     console.log("Usuario registrado");
-    {window.location="/src/prueba.html"}
+    {window.location="/src/index.html"}
   })
   .catch((error)=>{
     console.log("Error de firebase > "+error.code);
