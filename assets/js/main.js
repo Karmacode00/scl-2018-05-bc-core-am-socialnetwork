@@ -10,6 +10,7 @@ firebase.initializeApp({
 // Initialize Cloud Firestore through Firebase
 var db = firebase.firestore();
 
+//guardando en firebase imagen, titulo, texto
 function guardar(){
   const custom = customFile.files[0];
   const fileName = custom.name;
@@ -17,55 +18,50 @@ function guardar(){
     contentType: custom.type
   };
   const task = firebase.storage().ref('images') 
-      .child(fileName)
-      .put(custom, metadata);
-
+    .child(fileName)
+    .put(custom, metadata);
   task.then(snapshot => snapshot.ref.getDownloadURL())  //obtenemos la url de descarga (de la imagen)
-    .then(url => {
-        console.log("URL del archivo > "+url);
-        const titulopublicacion = document.getElementById('titulopublicacion').value;
-        document.getElementById('titulopublicacion').value = '';
-        const publicacion = document.getElementById('publicacion').value;
-        document.getElementById('publicacion').value = '';
-    });
+  .then(url => {
+    console.log("URL del archivo > "+url);
+    const titulopublicacion = document.getElementById('titulopublicacion').value;
+    document.getElementById('titulopublicacion').value = '';
+    const publicacion = document.getElementById('publicacion').value;
+    document.getElementById('publicacion').value = '';
+  });
 };
-
-
 
 //leer documentos
 let card = document.getElementById('cardPublicacion');
-
 db.collection("publicacion").onSnapshot((querySnapshot) => {
   card.innerHTML = '';
   querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => ${doc.data().img}`);
-      card.innerHTML += `
+    console.log(`${doc.id} => ${doc.data().img}`);
+    card.innerHTML += `
       <div class="card">
-      <img class="card-img-top" src="${doc.data().img}"text=Image cap" alt="Card image cap">
+        <img class="card-img-top" src="${doc.data().img}"text=Image cap" alt="Card image cap">
         <h5 class="card-title">${doc.data().title}</h5>
         <p class="card-text">${doc.data().text}</p>
         <i class="fas fa-trash-alt" onclick="eliminar('${doc.id}')"></i>
         <i class="fas fa-pencil-alt" onclick="editar('${doc.id}', '${doc.data().title}', '${doc.data().text}')"></i>
 
-      
-      <section class="center">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <textarea class="txt" id="comment" placeholder="Añade un comentario..."></textarea>
+        <section class="center">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <textarea class="txt" id="comment" placeholder="Añade un comentario..."></textarea>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <button type="submit" class="btn" id="btncomentario" onclick="comentar()">
+            <div class="row">
+              <div class="col-12">
+                <button type="submit" class="btn" id="btncomentario" onclick="comentar()">
                 <i class="fas fa-plus" aria-hidden="true"></i> Comentar</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12" id="cont"></div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-12" id="cont"></div>
-          </div>
-        </div>
-      </section>
+        </section>
       </div>
       `
   });
@@ -73,13 +69,11 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
 
 //Editar publicacion
 function editar(id, titulopublicacion, publicacion) {
-
   document.getElementById('titulopublicacion').value = titulopublicacion;
   document.getElementById('publicacion').value = publicacion;
   const boton = document.getElementById('btnPublicar');
   boton.innerHTML = 'Editar';
   alert('Sube para editar tu publicación');
-
 
   boton.onclick = function() {
     var washingtonRef = db.collection("publicacion").doc(id);
@@ -104,38 +98,6 @@ function editar(id, titulopublicacion, publicacion) {
     });
       }
 }
-/*
-function editar(id, titulopublicacion, publicacion, url) {
-
-  document.getElementById('titulopublicacion').value = titulopublicacion;
-  document.getElementById('publicacion').value = publicacion;
-  document.getElementById('url').value = url;
-
-let editarRef = db.collection("publicacion").doc(id);
-
-let boton = document.getElementById('btnEditar');
-
-let titulopublicacion = document.getElementById('titulopublicacion').value;
-let publicacion = document.getElementById('publicacion').value;
-let url = document.getElementById('url').value;
-
-// Set the "capital" field of the city 'DC'
-return editarRef.update({
-  title: titulopublicacion,
-  text: publicacion,
-  img: url
-})
-.then(function() {
-    console.log("Document successfully updated!");
-    boton.innerHTML = "Guardar";
-})
-.catch(function(error) {
-    // The document probably doesn't exist.
-    console.error("Error updating document: ", error);
-});
-
-}
-*/
 
 function eliminar(id) {
   let confirmarEliminar = confirm('¿Estas seguro de eliminar?');
@@ -147,4 +109,5 @@ function eliminar(id) {
     });
   }
 }
+
 

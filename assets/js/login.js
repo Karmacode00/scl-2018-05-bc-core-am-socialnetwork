@@ -84,12 +84,13 @@ provider.setCustomParameters({
     
 // Cerrar sesión
 function logout(){
-  firebase.auth().signOut()
-         .then(()=>{
-                      console.log("Chao");
+    firebase.auth().signOut()
+        .then(()=>{
+            console.log("Chao");
+            {window.location="/src/login.html"}
         })
-               .catch();
-   }
+        .catch();
+  }
   
   // Registro de usuario
   function register(){
