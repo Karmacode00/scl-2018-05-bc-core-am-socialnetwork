@@ -32,6 +32,7 @@ function guardar(){
       title: titulopublicacion,
       text: publicacion,
       img: url,
+      like: 0
     })
     .then(function(docRef) {
       console.log("Document written with ID: ", docRef.id);
@@ -54,7 +55,7 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
         <h5 class="card-title">${doc.data().title}</h5>
         <p class="card-text">${doc.data().text}</p>
         <i class="fas fa-trash-alt" onclick="eliminar('${doc.id}')"></i>
-        <i class="fas fa-heart" onclick=""></i>
+        <i class="fas fa-heart" onclick="likes('${doc.id}')"></i>
         <i class="fas fa-pencil-alt" onclick="editar('${doc.id}', '${doc.data().title}', '${doc.data().text}')"></i>
         
 
@@ -125,18 +126,18 @@ function eliminar(id) {
 
 
 //like post
-function likes(publicacion, id) {
-  publicacion.transaction(function(post) {
-    if (post) {
-      if (post.stars && post.stars[id]) {
-        post.starCount--;
-        post.stars[id] = null;
+function likes(id) {
+  publicacion.transaction(function(like) {
+    if (like) {
+      if (like.stars && like.stars[id]) {
+        like.starCount--;
+        like.stars[id] = null;
       } else {
-        post.starCount++;
-        if (!post.stars) {
-          post.stars = {};
+        like.starCount++;
+        if (!like.stars) {
+          like.stars = {};
         }
-        post.stars[id] = true;
+        like.stars[id] = true;
       }
     }
     return post;
