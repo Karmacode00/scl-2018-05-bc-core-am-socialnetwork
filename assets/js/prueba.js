@@ -111,15 +111,17 @@ return editarRef.update({
     // The document probably doesn't exist.
     console.error("Error updating document: ", error);
 });
+}
 // Cerrar sesión
 function logout(){
   firebase.auth().signOut()
       .then(()=>{
           console.log("Chao");
+          {window.location="/src/login.html"}
       })
       .catch();
 }
-}
+
 function eliminar(id) {
   let confirmarEliminar = confirm('¿Estas seguro de eliminar?');
   if (confirmarEliminar == true) {
@@ -130,3 +132,4 @@ function eliminar(id) {
     });
   }
 }
+

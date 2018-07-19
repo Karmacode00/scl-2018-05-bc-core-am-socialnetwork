@@ -1,13 +1,28 @@
 // Cerrar sesión
-function logout(){
-  firebase.auth().signOut()
+// function logout(){
+//   firebase.auth().signOut()
+//       .then(()=>{
+//           console.log("Chao");
+//       })
+//       .catch();
+// }
+
+// Registro de usuario
+function register(){
+  const emailValue = email.value;
+  const passwordValue = password.value; 
+  // const usuarioValue =  usuario.value;
+  firebase.auth().createUserWithEmailAndPassword(emailValue, passwordValue)
       .then(()=>{
-          console.log("Chao");
+          console.log("Usuario registrado");
+          {window.location="/src/prueba.html"}
       })
-      .catch();
+      .catch((error)=>{
+          console.log("Error de firebase > "+error.code);
+          console.log("Error de firebase, mensaje > "+error.message);
+      });
 }
 //Crear nuevo comentario, me gusta, eliminar
-
 function comentar() {
   let comments = document.getElementById('comment').value;
   document.getElementById('comment').value = '';

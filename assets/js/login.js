@@ -18,19 +18,7 @@ window.onload = ()=>{
       }
   });
 }
-function register(){
-  const emailValue = email.value;
-  const passwordValue = password.value; 
-  // const usuarioValue =  usuario.value;
-  firebase.auth().createUserWithEmailAndPassword(emailValue, passwordValue)
-      .then(()=>{
-          console.log("Usuario registrado");
-      })
-      .catch((error)=>{
-          console.log("Error de firebase > "+error.code);
-          console.log("Error de firebase, mensaje > "+error.message);
-      });
-}
+
 function login(){
   const emailValue = email.value;
   const passwordValue = password.value;
@@ -48,6 +36,7 @@ function logout(){
   firebase.auth().signOut()
       .then(()=>{
           console.log("Chao");
+          
       })
       .catch();
 }
