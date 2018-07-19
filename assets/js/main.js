@@ -57,7 +57,7 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
         <i class="fas fa-trash-alt" onclick="eliminar('${doc.id}')"></i>
         <i class="fas fa-pencil-alt" onclick="editar('${doc.id}', '${doc.data().title}', '${doc.data().text}')"></i>
 
-      </div>
+      
       <section class="center">
         <div class="container">
           <div class="row">
@@ -76,6 +76,7 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
           </div>
         </div>
       </section>
+      </div>
       `
   });
 });

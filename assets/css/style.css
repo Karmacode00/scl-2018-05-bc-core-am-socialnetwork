@@ -42,7 +42,7 @@ textarea {
 	margin: 0 auto;
 }
 
-#btn {
+.btn {
 	background-color: #66AEC7;
 	border: 0px;
 	cursor: pointer;
@@ -54,15 +54,15 @@ textarea {
 	color: #FFF;
 }
 
-#btn:hover {
+.btn:hover {
 	background-color: #5590A6;
 }
 
-#btn:focus, textarea:focus{
+.btn:focus, textarea:focus{
 	outline: none;
 }
 
-#cont {
+.cont {
 	border-radius: 0.4em;
 	margin: 0 auto;
 	color: #4E4D53;
@@ -71,11 +71,11 @@ textarea {
 	padding: 0 16%;
 }
 
-#cont span {
+.cont span {
 	margin-left: 1em;
 }
 
-#cont div {
+.cont section {
 	padding: 1em 0.5em;
 	margin-bottom: 2em;
 	outline: 0.1em solid #E5E3F2;
@@ -102,6 +102,7 @@ p {
 	display: inline-block;
 	margin-left: 0.5em;
 }
+
 
 				/* Estilo de login */
 /* ============================= */
