@@ -36,12 +36,14 @@ function guardar(){
     document.getElementById('titulopublicacion').value = '';
     const publicacion = document.getElementById('publicacion').value;
     document.getElementById('publicacion').value = '';
+    const comments = [];
 
     db.collection("publicacion").add({  
       title: titulopublicacion,
       text: publicacion,
       img: url,
-      like: 0
+      like: 0,
+      comments: comentario,
     })
     .then(function(docRef) {
       console.log("Document written with ID: ", docRef.id);
@@ -67,7 +69,6 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
         <i class="fas fa-heart" onclick="likes('${doc.id}')">${doc.data().like}</i>
         <i class="fas fa-pencil-alt" onclick="editar('${doc.id}', '${doc.data().title}', '${doc.data().text}')"></i>
         
-
         <section class="center">
           <div class="container">
             <div class="row">
@@ -77,7 +78,7 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
             </div>
             <div class="row">
               <div class="col-12">
-                <button type="submit" class="btn" id="btncomentario" onclick="comentar()">
+                <button type="submit" class="btn" id="btncomentario" onclick="guardarComentario()">
                 <i class="fas fa-plus" aria-hidden="true"></i> Comentar</button>
               </div>
             </div>
@@ -90,6 +91,34 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
       `
   });
 });
+
+function guardarComentario(){
+  //Crear nuevo comentario, me gusta, eliminar
+  let comments = document.getElementById('comment').value;
+  document.getElementById('comment').value = '';
+  const cont = document.getElementById('cont');
+  const newComments = document.createElement('div');
+  
+  //Para que aparezca si o si comentario
+  if(comments.length === 0 || comments === null){
+    alert ('Debes ingresar un mensaje');
+    return false;
+  }
+
+  //Crear p nuevo con comentario
+  const contenedorElemento = document.createElement('p');
+  let textNewComment = document.createTextNode(comments);
+  contenedorElemento.appendChild(textNewComment);
+  newComments.appendChild(contenedorElemento);
+  cont.appendChild(newComments);
+
+  db.collection("publicacion").doc(id).push().then(function() {
+    comentario : comments
+  })
+  .then(function() {
+    console.log("Document successfully updated!");
+  })
+}
 
 //Editar publicacion
 function editar(id, titulopublicacion, publicacion) {
