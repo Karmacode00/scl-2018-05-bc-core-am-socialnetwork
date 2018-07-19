@@ -1,11 +1,10 @@
 //Crear nuevo comentario, me gusta, eliminar
-
 function comentar() {
   let comments = document.getElementById('comment').value;
   document.getElementById('comment').value = '';
   const cont = document.getElementById('cont');
   const newComments = document.createElement('div');
-
+  
   //Para que aparezca si o si comentario
   if(comments.length === 0 || comments === null){
     alert ('Debes ingresar un mensaje');
