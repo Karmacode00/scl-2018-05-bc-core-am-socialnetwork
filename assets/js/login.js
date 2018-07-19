@@ -6,31 +6,19 @@ window.onload = ()=>{
           // loggedOut.style.display = "none";
           // loggedIn.style.display = "block";
           console.log("User > "+JSON.stringify(user));
-          {window.location="/src/index.html"}
-          alert("Bienvenido(a)")
+          {window.location="/src/prueba.html"}
+        //   alert("Bienvenido(a)")
       }else{
           //No estamos logueados
           // loggedOut.style.display = "block";
           // loggedIn.style.display = "none";
           console.log('Usuario no logeado');
-          alert("Iniciar Sesión")
+        //   alert("Iniciar Sesión")
           
       }
   });
 }
-function register(){
-  const emailValue = email.value;
-  const passwordValue = password.value; 
-  // const usuarioValue =  usuario.value;
-  firebase.auth().createUserWithEmailAndPassword(emailValue, passwordValue)
-      .then(()=>{
-          console.log("Usuario registrado");
-      })
-      .catch((error)=>{
-          console.log("Error de firebase > "+error.code);
-          console.log("Error de firebase, mensaje > "+error.message);
-      });
-}
+
 function login(){
   const emailValue = email.value;
   const passwordValue = password.value;
@@ -48,6 +36,7 @@ function logout(){
   firebase.auth().signOut()
       .then(()=>{
           console.log("Chao");
+          
       })
       .catch();
 }
@@ -93,15 +82,30 @@ provider.setCustomParameters({
     // ...
   });
     
-}
-//Me gusta y contador publicacion
-let contadorPublicacion = [];
-const heart = document.querySelector('i');
-heart.addEventListener('click', ()=> {
-  if (heart.classList.toggle('red')){
-    contadorPublicacion++;
-  }else{
-    contadorPublicacion--;
+// Cerrar sesión
+function logout(){
+  firebase.auth().signOut()
+         .then(()=>{
+                      console.log("Chao");
+        })
+               .catch();
+   }
+  
+  // Registro de usuario
+  function register(){
+    const emailValue = email.value;
+    const passwordValue = password.value; 
+    // const usuarioValue =  usuario.value;
+    firebase.auth().createUserWithEmailAndPassword(emailValue, passwordValue)
+        .then(()=>{
+            console.log("Usuario registrado");
+            {window.location="/src/prueba.html"}
+        })
+        .catch((error)=>{
+            console.log("Error de firebase > "+error.code);
+            console.log("Error de firebase, mensaje > "+error.message);
+        });
   }
-  return contador.innerHTML = contadorPublicacion;
-})
+
+}
+

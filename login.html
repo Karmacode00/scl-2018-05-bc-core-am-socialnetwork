@@ -32,9 +32,17 @@
           <label for="exampleInputPassword1">Password</label>
           <input type="password" class="form-control" id="password" placeholder="Password" pattern="[0-9]{8}">
         </div>
+        <!-- Mensaje de alerta -->
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>Por Favor Inicie Sesión!</strong> 
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         <!-- Login Facebook -->
         <button onclick="loginFacebook()" type="button" class=" btn btn-default iniciar facebook">
           <i class="fab fa-facebook-square" style="color:white;"></i> Inicar sesión con Facebook</button>
+          
           <!--  login Google -->
         <button onclick="loginGoogle()" type="button" class="btn btn-default iniciar google">
           <i class="fab fa-google" style="color: white;"></i> Iniciar sesion con Google</button>
@@ -48,10 +56,6 @@
     </div>
     </span>
   </div>
-
-
-
-
 
   <!-- js firebase -->
   <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>

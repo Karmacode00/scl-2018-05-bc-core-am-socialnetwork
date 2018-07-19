@@ -11,56 +11,42 @@
     <!-- Firestore -->
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
-<body>
 
-	<!-- Sección header -->
-	<header>
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<!--<button type="button" id="hide">Hide</button>
-					<button type="button" id="show">Show</button>-->
-					<img class="log" src="assets/img/Sogbu Restaurant Logo (2).jpg" alt="Instagram">
-				</div>
-			</div>
-		</div>
-	</header>		
-	<!-- Contenedor de las publicaciones -->
-	<section>
-		<div class="container col-6">
-			<!-- Seleccionar imagen -->
-			<progress value="0" max="100" id="uploader"></progress>
-			<input type="file" value="upload" id="fileButton"><br>
-			<div class="col-12">
-				<textarea class="txt" id="publicar" placeholder="Añade tu publicacion..."></textarea>
-			</div>
-			<div class="col-12">
-				<button type="submit" id="btnpublicar" class="btn">
-					<i class="fas fa-plus" aria-hidden="true"></i> Publicar</button>
-			</div>
-		</div>		
-	</section>
-
-    <!-- link de fontawesome -->
+    	<!-- link de fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
     crossorigin="anonymous">
 
     <link rel="stylesheet" href="assets/css/style.css">
-
+    
     <title>Foodgram</title>
   </head>
   <body>
-    <header>
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <img class="log" src="assets/img/Sogbu Restaurant Logo (2).jpg" alt="Instagram">
-          </div>
-        </div>
-      </div>
-    </header>	
-
+    	<!-- Mensaje de alerta -->
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				<strong>Bienvenido!</strong>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+      <!-- Botones -->
+      <button type="button" class="btn btn-link"><a href="../src/perfil.html" style="color: #000;"> Perfil</a></button>
+			<button type="button" class="btn btn-link"><a href="../src/registro.html" style="color: #000;"> Registrarse</a></button>
+			<button type="button" class="btn btn-link"><a href="../src/login.html" style="color:#000;"> Iniciar Sesión</a></button>
+			<button type="button" class="btn btn-link" onclick="logout()" style="color: #000;">Cerrar Sesión</button>
     
+      <div class="container-fluid">
+          <div class="card cont">
+          <h5>Agrega tu receta</h5>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input my-3" id="customFile">
+            <label class="custom-file-label" for="customFile">Examinar</label>
+          </div>   
+          <input type="text" id="titulopublicacion" placeholder="Añade un titulo a la receta..." class="form-control my-3" >   
+          <input type="text" id="publicacion" placeholder="Agrega acá tu publicación..." class="form-control my-3" >
+          <button class="btn btn-info" id="btnPublicar" onclick="guardar()">Publicar</button>
+        </div>
+          <div class="card cont" id="cardPublicacion"></div>
+        </div>
     
 
     <!-- Optional JavaScript -->
@@ -70,7 +56,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://use.fontawesome.com/7873633050.js"></script>
-    <script src="assets/js/dom.js"></script>
+    <script src="assets/js/prueba.js"></script>
     <script src="assets/js/main.js"></script>
   </body>
 </html>

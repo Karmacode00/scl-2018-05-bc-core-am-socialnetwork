@@ -27,10 +27,21 @@ function guardar(){
         document.getElementById('titulopublicacion').value = '';
         const publicacion = document.getElementById('publicacion').value;
         document.getElementById('publicacion').value = '';
-    });
-};
+  
+        db.collection("publicacion").add({  
+          title: titulopublicacion,
+          text: publicacion,
+          img: url,
+        })
+        .then(function(docRef) {
+          console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
+      });
+      });
 
-
+}
 
 //leer documentos
 let card = document.getElementById('cardPublicacion');
@@ -45,9 +56,10 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
         <h5 class="card-title">${doc.data().title}</h5>
         <p class="card-text">${doc.data().text}</p>
         <i class="fas fa-trash-alt" onclick="eliminar('${doc.id}')"></i>
-        <i class="fas fa-pencil-alt" onclick="editar('${doc.id}', '${doc.data().title}', '${doc.data().text}')"></i>
+        <i class="fas fa-pencil-alt"></i>
+        <button class="btn btn-info" id="btnEditar" onclick="editar('${doc.data().img}','${doc.data().title}','${doc.data().text}')">Editar</button>
 
-      
+      </div>
       <section class="center">
         <div class="container">
           <div class="row">
@@ -66,45 +78,11 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
           </div>
         </div>
       </section>
-      </div>
       `
   });
 });
 
 //Editar publicacion
-function editar(id, titulopublicacion, publicacion) {
-
-  document.getElementById('titulopublicacion').value = titulopublicacion;
-  document.getElementById('publicacion').value = publicacion;
-  const boton = document.getElementById('btnPublicar');
-  boton.innerHTML = 'Editar';
-  alert('Sube para editar tu publicación');
-
-
-  boton.onclick = function() {
-    var washingtonRef = db.collection("publicacion").doc(id);
-    // Set the "capital" field of the city 'DC'
-    const titulopublicacion = document.getElementById('titulopublicacion').value;
-    const publicacion = document.getElementById('publicacion').value;
-
-    return washingtonRef.update({
-      title: titulopublicacion,
-      text: publicacion,
-
-    })
-    .then(function() {
-        console.log("Document successfully updated!");
-        boton.innerHTML = 'Guardar';
-        document.getElementById('titulopublicacion').value = '';
-        document.getElementById('publicacion').value = '';
-    })
-    .catch(function(error) {
-        // The document probably doesn't exist.
-        console.error("Error updating document: ", error);
-    });
-      }
-}
-/*
 function editar(id, titulopublicacion, publicacion, url) {
 
   document.getElementById('titulopublicacion').value = titulopublicacion;
@@ -133,9 +111,16 @@ return editarRef.update({
     // The document probably doesn't exist.
     console.error("Error updating document: ", error);
 });
-
 }
-*/
+// Cerrar sesión
+function logout(){
+  firebase.auth().signOut()
+      .then(()=>{
+          console.log("Chao");
+          {window.location="/src/login.html"}
+      })
+      .catch();
+}
 
 function eliminar(id) {
   let confirmarEliminar = confirm('¿Estas seguro de eliminar?');
