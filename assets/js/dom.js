@@ -39,8 +39,6 @@ function comentar() {
         let confirmarEditar = confirm('¿Estas seguro que quieres modificar tu comentario?');
         if (confirmarEditar == true) {
           contenedorElemento.removeAttribute('contentEditable');
-        } else {
-
         }
       }
     })
