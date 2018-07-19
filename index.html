@@ -12,7 +12,7 @@
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
 
-    	<!-- link de fontawesome -->
+    <!-- link de fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
     crossorigin="anonymous">
 
@@ -21,20 +21,19 @@
     <title>Foodgram</title>
   </head>
   <body>
-    	<header>
-          <div class="container">
-            <div class="row">
-              <div class="col-12">
-                <!--<button type="button" id="hide">Hide</button>
-                <button type="button" id="show">Show</button>-->
-                <img class="log" src="assets/img/Sogbu Restaurant Logo (2).jpg" alt="Instagram">
-              </div>
-            </div>
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <img class="log" src="assets/img/Sogbu Restaurant Logo (2).jpg" alt="Instagram">
           </div>
-        </header>	
-        
+        </div>
+      </div>
+    </header>	
+
     <div class="container-fluid">
-      <h1>Agrega tu receta</h1>
+      <div class="card cont">
+      <h5>Agrega tu receta</h5>
       <div class="custom-file">
         <input type="file" class="custom-file-input my-3" id="customFile">
         <label class="custom-file-label" for="customFile">Examinar</label>
@@ -42,11 +41,9 @@
       <input type="text" id="titulopublicacion" placeholder="Añade un titulo a la receta..." class="form-control my-3" >   
       <input type="text" id="publicacion" placeholder="Agrega acá tu publicación..." class="form-control my-3" >
       <button class="btn btn-info" id="btnPublicar" onclick="guardar()">Publicar</button>
-      
-
-      <div class="card cont" id="cardPublicacion">
-      </div>
-
+    </div>
+      <div class="card cont" id="cardPublicacion"></div>
+    </div>
     
 
     <!-- Optional JavaScript -->
