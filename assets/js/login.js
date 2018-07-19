@@ -101,4 +101,3 @@ function register(){
     console.log("Error de firebase, mensaje > "+error.message);
   });
 }
-
