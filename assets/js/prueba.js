@@ -40,7 +40,6 @@ function guardar(){
           console.error("Error adding document: ", error);
       });
       });
-
 }
 
 //leer documentos
@@ -56,8 +55,7 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
         <h5 class="card-title">${doc.data().title}</h5>
         <p class="card-text">${doc.data().text}</p>
         <i class="fas fa-trash-alt" onclick="eliminar('${doc.id}')"></i>
-        <i class="fas fa-pencil-alt"></i>
-        <button class="btn btn-info" id="btnEditar" onclick="editar('${doc.data().img}','${doc.data().title}','${doc.data().text}')">Editar</button>
+        <i class="fas fa-pencil-alt" onclick="editar('${doc.id}', '${doc.data().title}', '${doc.data().text}')"></i>
 
       </div>
       <section class="center">
@@ -83,6 +81,37 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
 });
 
 //Editar publicacion
+function editar(id, titulopublicacion, publicacion) {
+
+  document.getElementById('titulopublicacion').value = titulopublicacion;
+  document.getElementById('publicacion').value = publicacion;
+  const boton = document.getElementById('btnPublicar');
+  boton.innerHTML = 'Editar';
+
+  boton.onclick = function() {
+    var washingtonRef = db.collection("publicacion").doc(id);
+    // Set the "capital" field of the city 'DC'
+    const titulopublicacion = document.getElementById('titulopublicacion').value;
+    const publicacion = document.getElementById('publicacion').value;
+
+    return washingtonRef.update({
+      title: titulopublicacion,
+      text: publicacion,
+
+    })
+    .then(function() {
+        console.log("Document successfully updated!");
+        boton.innerHTML = 'Guardar';
+        document.getElementById('titulopublicacion').value = '';
+        document.getElementById('publicacion').value = '';
+    })
+    .catch(function(error) {
+        // The document probably doesn't exist.
+        console.error("Error updating document: ", error);
+    });
+      }
+}
+/*
 function editar(id, titulopublicacion, publicacion, url) {
 
   document.getElementById('titulopublicacion').value = titulopublicacion;
@@ -113,6 +142,7 @@ return editarRef.update({
 });
 
 }
+*/
 
 function eliminar(id) {
   let confirmarEliminar = confirm('¿Estas seguro de eliminar?');
