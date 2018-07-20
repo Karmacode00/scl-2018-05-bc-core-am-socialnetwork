@@ -65,6 +65,10 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
         <p class="card-text">${doc.data().text}</p>
         <i class="fas fa-heart" id="hola" onclick="like()" ></i><span id="contador"></span>
         <i class="fas fa-trash-alt" onclick="eliminar('${doc.id}')"></i>
+<<<<<<< HEAD
+=======
+        <i class="fas fa-heart" onclick="toggleStar('${doc.id}')">${doc.data().like}</i>
+>>>>>>> e4e75141c76888bc4b4d3de14c3b475023473212
         <i class="fas fa-pencil-alt" onclick="editar('${doc.id}', '${doc.data().title}', '${doc.data().text}')"></i>
         
         <section class="center">
@@ -177,21 +181,23 @@ function like() {
 
 /*
 //like post
-function likes(id) {
-  publicacion.transaction(function(like) {
+function toggleStar(docRef, uid) {
+var docRef = db.collection("publicacion").doc(id) ;
+
+  docRef.transaction(function(like) {
     if (like) {
-      if (like.stars && like.stars[id]) {
+      if (like.stars && like.stars[uid]) {
         like.starCount--;
-        like.stars[id] = null;
+        like.stars[uid] = null;
       } else {
         like.starCount++;
         if (!like.stars) {
           like.stars = {};
         }
-        like.stars[id] = true;
+        like.stars[uid] = true;
       }
     }
-    return post;
+    return like;
   });
 }
 */
