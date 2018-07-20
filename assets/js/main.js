@@ -36,14 +36,12 @@ function guardar(){
     document.getElementById('titulopublicacion').value = '';
     const publicacion = document.getElementById('publicacion').value;
     document.getElementById('publicacion').value = '';
-    const comments = [];
 
     db.collection("publicacion").add({  
       title: titulopublicacion,
       text: publicacion,
       img: url,
-      like: 0,
-      comments: comentario,
+
     })
     .then(function(docRef) {
       console.log("Document written with ID: ", docRef.id);
@@ -65,8 +63,8 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
         <img class="card-img-top" src="${doc.data().img}"text=Image cap" alt="Card image cap">
         <h5 class="card-title">${doc.data().title}</h5>
         <p class="card-text">${doc.data().text}</p>
+        <i class="fas fa-heart" id="hola" onclick="like()" ></i><span id="contador"></span>
         <i class="fas fa-trash-alt" onclick="eliminar('${doc.id}')"></i>
-        <i class="fas fa-heart" onclick="likes('${doc.id}')">${doc.data().like}</i>
         <i class="fas fa-pencil-alt" onclick="editar('${doc.id}', '${doc.data().title}', '${doc.data().text}')"></i>
         
         <section class="center">
@@ -78,7 +76,7 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
             </div>
             <div class="row">
               <div class="col-12">
-                <button type="submit" class="btn" id="btncomentario" onclick="guardarComentario()">
+                <button type="submit" class="btn" id="btncomentario" onclick="comentar()">
                 <i class="fas fa-plus" aria-hidden="true"></i> Comentar</button>
               </div>
             </div>
@@ -92,6 +90,7 @@ db.collection("publicacion").onSnapshot((querySnapshot) => {
   });
 });
 
+/*
 function guardarComentario(){
   //Crear nuevo comentario, me gusta, eliminar
   let comments = document.getElementById('comment').value;
@@ -119,6 +118,7 @@ function guardarComentario(){
     console.log("Document successfully updated!");
   })
 }
+*/
 
 //Editar publicacion
 function editar(id, titulopublicacion, publicacion) {
@@ -162,7 +162,20 @@ function eliminar(id) {
   }
 }
 
+function like() {
+  let contadorPublicacion = [];
+  const heart = document.getElementById('hola');
+  heart.addEventListener('click', ()=> {
+  if (heart.classList.toggle('red')){
+  contadorPublicacion++;
+  }else{
+  contadorPublicacion--;
+  }
+  return contador.innerHTML = contadorPublicacion;
+  })
+}
 
+/*
 //like post
 function likes(id) {
   publicacion.transaction(function(like) {
@@ -181,3 +194,4 @@ function likes(id) {
     return post;
   });
 }
+*/
