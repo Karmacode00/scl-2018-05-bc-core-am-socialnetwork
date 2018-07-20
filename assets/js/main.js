@@ -43,7 +43,7 @@ function guardar(){
       text: publicacion,
       img: url,
       like: 0,
-      comments: comentario,
+      // comments: comentario,
     })
     .then(function(docRef) {
       console.log("Document written with ID: ", docRef.id);
