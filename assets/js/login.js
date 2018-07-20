@@ -31,6 +31,7 @@ function login(){
     console.log("Error de firebase, mensaje > "+error.message);
     alert("Usuario no registrado");{window.location="/src/registro.html"}
   });
+  return false;
 }
 
 function loginFacebook(){
