@@ -29,6 +29,7 @@ function login(){
   .catch((error)=>{
     console.log("Error de firebase > "+error.code);
     console.log("Error de firebase, mensaje > "+error.message);
+    alert("Usuario no registrado");{window.location="/src/registro.html"}
   });
   return false;
 }

@@ -10,6 +10,15 @@ firebase.initializeApp({
 // Initialize Cloud Firestore through Firebase
 var db = firebase.firestore();
 
+// Cerrar sesión
+function logout(){
+  firebase.auth().signOut()
+  .then(()=>{
+    console.log("Chao");
+    {window.location="/src/login.html"}
+  })
+  .catch();
+}
 //guardando en firebase imagen, titulo, texto
 function guardar(){
   const custom = customFile.files[0];

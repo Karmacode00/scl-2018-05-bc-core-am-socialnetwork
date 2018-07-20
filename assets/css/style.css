@@ -28,7 +28,7 @@ header {
 	box-shadow: 0 0 0.25em 0 rgba(50, 50, 50, 0.2);
 }
 
-				/* Estilo de perfil */
+	/* Estilo de perfil */
 /* ============================= */
 
 textarea {
@@ -42,7 +42,7 @@ textarea {
 	margin: 0 auto;
 }
 
-.btn {
+#btn {
 	background-color: #66AEC7;
 	border: 0px;
 	cursor: pointer;
@@ -54,11 +54,11 @@ textarea {
 	color: #FFF;
 }
 
-.btn:hover {
+#btn:hover {
 	background-color: #5590A6;
 }
 
-.btn:focus, textarea:focus{
+#btn:focus, textarea:focus{
 	outline: none;
 }
 
@@ -67,7 +67,7 @@ textarea {
 	margin: 0 auto;
 	color: #4E4D53;
 	text-align: left;
-	margin-bottom: 6em;
+	margin-bottom: 1em;
 	padding: 0 16%;
 }
 
@@ -75,12 +75,19 @@ textarea {
 	margin-left: 1em;
 }
 
-.cont section {
+/* .cont section {
 	padding: 1em 0.5em;
 	margin-bottom: 2em;
 	outline: 0.1em solid #E5E3F2;
 	background-color: #FFF;
-}
+} */
+
+/* .cont div {
+	padding: 1em 0.5em;
+	margin-bottom: 2em;
+	outline: 0.1em solid #E5E3F2;
+	background-color: #FFF;
+} */
 
 .fa-heart, .fa-trash-alt, .fa-pencil-alt {
 	margin:1em;
@@ -102,9 +109,13 @@ p {
 	display: inline-block;
 	margin-left: 0.5em;
 }
-
-
-				/* Estilo de login */
+#title-inicio{
+	text-align: center;
+    color: #da1d0f;
+    font-size: -webkit-xxx-large;
+    font-family: monospace;
+}
+	/* Estilo de login */
 /* ============================= */
 
 /* .secion{
@@ -125,9 +136,9 @@ h1{
   color: #da1d0f;
 }
 
-h3{
+/* h3{
   color: rgb(27, 21, 21);
-}
+} */
 .back {
   /* background: #e2e2e2; */
   width: 100%;
