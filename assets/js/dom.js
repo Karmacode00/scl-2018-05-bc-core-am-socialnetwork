@@ -1,4 +1,4 @@
-/*
+
 //Crear nuevo comentario, me gusta, eliminar
 function comentar() {
   let comments = document.getElementById('comment').value;
@@ -67,4 +67,15 @@ function comentar() {
 
 }
 
-*/
+function likes() {
+  let contadorPublicacion = [];
+  const heart = document.getElementsByClassName('fa-heart');
+  heart.addEventListener('click', ()=> {
+  if (heart.classList.toggle('red')){
+  contadorPublicacion++;
+  }else{
+  contadorPublicacion--;
+  }
+  return contador.innerHTML = contadorPublicacion;
+  })
+}
