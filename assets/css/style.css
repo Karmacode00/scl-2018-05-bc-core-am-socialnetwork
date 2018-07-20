@@ -82,7 +82,7 @@ textarea {
 	background-color: #FFF;
 }
 
-.heart, .fa-trash-alt, .fa-pencil-alt {
+.fa-heart, .fa-trash-alt, .fa-pencil-alt {
 	margin:1em;
 	float: right;
 	cursor: pointer;
