@@ -51,7 +51,8 @@ function loginFacebook(){
   });
 }
 
-function loginGoogle(){
+googleLogin.addEventListener("click", () => {
+  console.log("click")
   var provider = new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({
     'login_hint': 'user@example.com'
@@ -63,7 +64,10 @@ function loginGoogle(){
     // The signed-in user info.
     var user = result.user;
     // ...
-     console.log("Login con Google");
+    console.log("Usuario registrado >"+ JSON.stringify(user));
+    loginPage.style.display = "none";
+    alertBar.style.display = "block";
+    profilePage.style.display = "block";
     //  {window.location="/src/index.html"}
   })
   .catch((error) => {
@@ -75,8 +79,8 @@ function loginGoogle(){
     // The firebase.auth.AuthCredential type that was used.
     var credential = error.credential;
     // ...
-  });
-}
+  })
+})
     
 // Cerrar sesión
 function logout(){
