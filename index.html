@@ -1,67 +1,216 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>FoodGram</title>
 
-    <!-- Firestore -->
-    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-    	<!-- link de fontawesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+  <!-- link de fontawesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
     crossorigin="anonymous">
 
-    <link rel="stylesheet" href="assets/css/style.css">
-    
-    <title>Foodgram</title>
-  
-  </head>
-  <body>
-    
-    <!-- Mensaje de alerta -->
-		<div class="alert alert-warning alert-dismissible fade show" role="alert">
-			<strong>Bienvenido!</strong>
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			  <span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-    
-    <!-- Botones -->
+  <!-- Link de iconos -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+    crossorigin="anonymous">
+  <!-- Mi estilo -->
+  <link rel="stylesheet" href="../src/assets/css/style.css">
+</head>
+
+<title>Foodgram</title>
+
+</head>
+
+<body>
+
+  <!-- Mensaje de alerta -->
+  <section id="alertBar">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Bienvenido!</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Comienzo seccion de login-->
+  <section id="loginPage">
+    <div class="back form div-center">
+      <div class="content">
+        <img id="logo-login" src="../src/assets/img/Sogbu Restaurant Logo (2).jpg" class="rounded mx-auto d-block" alt="logo de FoodGram">
+        <h1>FoodGram</h1>
+
+        <hr>
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Correo Electrónico</label>
+            <input type="email" class="form-control" id="email" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Contraseña</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" pattern="[0-9]{8}">
+          </div>
+
+          <!-- Login Facebook -->
+          <button onclick="loginFacebook();return false;" type="button" class=" btn btn-default iniciar facebook">
+            <i class="fab fa-facebook-square" style="color:white;"></i> Inicar sesión con Facebook</button>
+
+          <!--  login Google -->
+          <button id="googleLogin" type="button" class="btn btn-default iniciar google">
+            <i class="fab fa-google" style="color: white;"></i> Iniciar sesion con Google</button>
+
+          <!-- login -->
+          <button onclick="login()" type="button" class="btn btn-default iniciar">Iniciar Sesión</button>
+          <hr>
+          <button type="button" class="btn btn-link"><a href="registro.html"> Registro</a></button>
+          <button onclick="logout()" type="button" class="btn btn-link">Cerrar Sesión</button>
+          <button type="button" class="btn btn-link">Restablecer Contraseña</button>
+        </form>
+      </div>
+      </span>
+    </div>
+  </section>
+  <!-- Fin seccion de login -->
+
+  <!-- Comienzo de seccion registro-->
+
+  <section id="registerPage">
+    <div class="back form div-center">
+      <div class="content">
+        <img id="logo-login-registro" src="../src/assets/img/Sogbu Restaurant Logo (2).jpg" class="rounded mx-auto d-block"
+          alt="logo de FoodGram">
+        <h2 class="descrip">Registrate para ver fotos y videos de las mejores recetas</h2>
+        <h3>Registro</h3>
+        <hr>
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Correo Electrónico</label>
+            <input type="email" class="form-control" id="email" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputText1">Nombre de Usuario</label>
+            <input type="text" class="form-control" id="usuario" placeholder="Nombre de usuario">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Contraseña</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" pattern="[0-9]{8}">
+          </div>
+          <button type="button" class="btn btn-primary" onclick="register()"> Registrate</button>
+          <hr>
+        </form>
+      </div>
+      </span>
+    </div>
+  </section>
+
+  <!-- Fin de seccion registro-->
+
+  <!-- Menú -->
+  <section id="buttons">
     <button type="button" class="btn btn-link"><a href="../src/perfil.html" style="color: #000;"> Perfil</a></button>
-		<button type="button" class="btn btn-link"><a href="../src/registro.html" style="color: #000;"> Registrarse</a></button>
-		<button type="button" class="btn btn-link"><a href="../src/login.html" style="color:#000;"> Iniciar Sesión</a></button>
-		<button type="button" class="btn btn-link" onclick="logout()" style="color: #000;">Cerrar Sesión</button>
-    
+    <button type="button" class="btn btn-link"><a href="../src/registro.html" style="color: #000;"> Registrarse</a></button>
+    <button type="button" class="btn btn-link"><a href="../src/login.html" style="color:#000;"> Iniciar Sesión</a></button>
+    <button type="button" class="btn btn-link" onclick="logout()" style="color: #000;">Cerrar Sesión</button>
+  </section>
+
+  <!-- Comienzo seccion para crear un post -->
+  <section id="newPostPage">
     <div class="container-fluid">
       <div class="card cont">
         <h5 id="title-inicio">Agrega tu receta</h5>
         <div class="custom-file">
           <input type="file" class="custom-file-input my-3" id="customFile">
           <label id="imagenPublicacion" class="custom-file-label" for="customFile">Examinar</label>
-        </div>   
-        <input type="text" id="titulopublicacion" placeholder="Añade un titulo a la receta..." class="form-control my-3" >   
-        <input type="text" id="publicacion" placeholder="Agrega acá tu publicación..." class="form-control my-3" >
+        </div>
+        <input type="text" id="titulopublicacion" placeholder="Añade un titulo a la receta..." class="form-control my-3">
+        <input type="text" id="publicacion" placeholder="Agrega acá tu publicación..." class="form-control my-3">
         <button class="btn btn-info" id="btnPublicar" onclick="guardar()">Publicar</button>
       </div>
-      
+
       <div class="card cont" id="cardPublicacion"></div>
     </div>
-    
+  </section>
+  <!-- Fin seccion para crear un post -->
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://use.fontawesome.com/7873633050.js"></script>
-    <!-- <script src="assets/js/login.js"></script> -->
-    <script src="src/assets/js/main.js"></script>
-    <script src="src/assets/js/dom.js"></script>
-  </body>
+  <!-- Comienzo seccion del perfil de usuario -->
+  <section id="profilePage">
+    <!-- Navbar y link a index html -->
+    <div class="center">
+      <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-secondary">Inicio</button>
+        <button type="button" class="btn btn-secondary">Amigos</button>
+        <button type="button" class="btn btn-secondary">Mensajes</button>
+      </div>
+    </div>
+
+    <header>
+
+      <section>
+        <div class="container photo center">
+          <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6 img">
+              <img src="./src/assets/img/Sogbu Restaurant Logo (2).jpg" widht="180" height="180">
+              <p>Usuario</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+    </header>
+
+    <!-- Donde aparecerán las publicaciones -->
+    <section>
+      <div class="container photo center">
+        <div class="row">
+          <div class="col-3"></div>
+          <div class="col-6 img">
+            <img src="./src/assets/img/cel-lisboa-60315-e1504660981599.jpg" widht="250" height="250">
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+  <!-- Fin seccion del perfil de usuario -->
+
+
+  <!-- js firebase -->
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAsyUFU3YRE0ZFQBsX06RIr0jkZIwNDZrI",
+      authDomain: "foodgram-65316.firebaseapp.com",
+      databaseURL: "https://foodgram-65316.firebaseio.com",
+      projectId: "foodgram-65316",
+      storageBucket: "foodgram-65316.appspot.com",
+      messagingSenderId: "186832450814"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+  <!-- Firestore -->
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+    crossorigin="anonymous"></script>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://use.fontawesome.com/7873633050.js"></script>
+  <script src="./src/assets/js/login.js"></script>
+  <script src="src/assets/js/main.js"></script>
+  <script src="src/assets/js/dom.js"></script>
+</body>
+
 </html>

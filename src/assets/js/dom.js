@@ -1,3 +1,12 @@
+window.onload = () => {
+  loginPage.style.display = "block";
+  registerPage.style.display = "none";
+  buttons.style.display = "none";
+  newPostPage.style.display = "none";
+  profilePage.style.display = "none";
+  alertBar.style.display = "none";
+};
+
 
 //Crear nuevo comentario, me gusta, eliminar
 function comentar() {
