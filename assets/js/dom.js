@@ -1,26 +1,16 @@
-window.onload = () => {
-  loginPage.style.display = "block";
-  registerPage.style.display = "none";
-  buttons.style.display = "none";
-  newPostPage.style.display = "none";
-  profilePage.style.display = "none";
-  alertBar.style.display = "none";
-};
-
-
 //Crear nuevo comentario, me gusta, eliminar
-function comentar() {
-  let comments = document.getElementById('comment').value;
-  document.getElementById('comment').value = '';
-  const cont = document.getElementById('cont');
+function comentar(id) {
+  let comments = document.getElementById('comment' + id).value;
+  document.getElementById('comment' + id).value = '';
+  const cont = document.getElementById('cont' + id);
   const newComments = document.createElement('div');
-  
+
   //Para que aparezca si o si comentario
-  if(comments.length === 0 || comments === null){
-    alert ('Debes ingresar un mensaje');
+  if (comments.length === 0 || comments === null) {
+    alert('Debes ingresar un mensaje');
     return false;
   }
-  
+
   //corazon
   const heart = document.createElement('i');
   const contadorheart = document.createElement('span');
@@ -28,10 +18,10 @@ function comentar() {
   heart.classList.add('fa', 'fa-heart', 'heart');
   //evento click corazon
   let contadorComentario = [];
-  heart.addEventListener('click', ()=> {
-    if (heart.classList.toggle('red')){
+  heart.addEventListener('click', () => {
+    if (heart.classList.toggle('red')) {
       contadorComentario++;
-    }else{
+    } else {
       contadorComentario--;
     }
     return contadorheart.innerHTML = contadorComentario;
@@ -41,24 +31,37 @@ function comentar() {
   const edit = document.createElement('i');
   edit.classList.add('fas', 'fa-pencil-alt');
   //Evento click editar
-  edit.addEventListener('click', ()=> {
+  edit.addEventListener('click', () => {
     contenedorElemento.contentEditable = true;
-    contenedorElemento.addEventListener('keydown', (event)=> {
-      if (event.which == 13){
-        let confirmarEditar = confirm('¿Estas seguro que quieres modificar tu comentario?');
-        if (confirmarEditar == true) {
-          contenedorElemento.removeAttribute('contentEditable');
-        }
+    let confirmarEditar = confirm('¿Estas seguro que quieres modificar tu comentario?');
+    if (confirmarEditar == true) {
+      const editComment = contenedorElemento.textContent;
+      const newCommentEdit = document.createElement("input")
+      newCommentEdit.setAttribute("type", "text");
+      newCommentEdit.value = editComment;
+      newComments.removeChild(contenedorElemento);
+      newComments.appendChild(newCommentEdit);
+      const saveButton = document.createElement("button");
+      saveButton.textContent = "Guardar";
+      newComments.appendChild(saveButton);
+      saveButton.onclick= () =>{
+        const editedComment = newCommentEdit.value;
+        contenedorElemento.textContent = editedComment;
+        newComments.removeChild(newCommentEdit);
+        newComments.removeChild(saveButton);
+        newComments.appendChild(contenedorElemento);
       }
-    })
+      //contenedorElemento.removeAttribute('contentEditable');
+    }
+
   })
-  
+
   //Basura
   const trash = document.createElement('i');
   trash.classList.add('fa', 'fa-trash', 'trash');
   //Evento click basura
-  trash.addEventListener('click', ()=> {
-      let confirmarEliminar = confirm('¿Estas seguro de eliminar?');
+  trash.addEventListener('click', () => {
+    let confirmarEliminar = confirm('¿Estas seguro de eliminar?');
     if (confirmarEliminar == true) {
       cont.removeChild(newComments);
     }
@@ -76,15 +79,15 @@ function comentar() {
 
 }
 
-function likes() {
-  let contadorPublicacion = [];
-  const heart = document.getElementsByClassName('fa-heart');
-  heart.addEventListener('click', ()=> {
-  if (heart.classList.toggle('red')){
-  contadorPublicacion++;
-  }else{
-  contadorPublicacion--;
-  }
-  return contador.innerHTML = contadorPublicacion;
-  })
-}
+// function likes() {
+//   let contadorPublicacion = [];
+//   const heart = document.getElementsByClassName('fa-heart');
+//   heart.addEventListener('click', ()=> {
+//   if (heart.classList.toggle('red')){
+//   contadorPublicacion++;
+//   }else{
+//   contadorPublicacion--;
+//   }
+//   return contador.innerHTML = contadorPublicacion;
+//   })
+// }
