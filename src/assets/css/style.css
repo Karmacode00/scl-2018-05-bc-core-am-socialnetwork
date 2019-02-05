@@ -3,189 +3,51 @@ body {
 	background-color: #FAFAFA;
 }
 
-.center {
+.textAlign{
 	text-align: center;
 }
 
-header {
-	background-color: #FFF;
-}
-
-/* Comentado porque es muy general y toma otras imagenes que hay en la pagina  */
-
-/* header div img {
-	width: 10em;
-} */
-
-/* img{
-	width: 100%;
-} */
-
-.img {
-	text-align: center;
-	margin: 2em auto;
-	border: 5em solid #FFF;
-	box-shadow: 0 0 0.25em 0 rgba(50, 50, 50, 0.2);
-}
-
-	/* Estilo de perfil */
-/* ============================= */
-
-textarea {
-	width: 70%;
-	height: 4em;
-	color: #4E4D53;
-	font-size: 15px;
-	padding: 1em;
-	border-radius: 1em;
-	border: none;
-	margin: 0 auto;
-}
-
-#btn {
-	background-color: #66AEC7;
-	border: 0px;
-	cursor: pointer;
-	text-align: center;
-	margin: 3em auto;
-	width: 130px;
-	height: 30px;
-	display: block;
-	color: #FFF;
-}
-
-#btn:hover {
-	background-color: #5590A6;
-}
-
-#btn:focus, textarea:focus{
-	outline: none;
-}
-
-.cont {
-	border-radius: 0.4em;
-	margin: 0 auto;
-	color: #4E4D53;
-	text-align: left;
-	margin-bottom: 1em;
-	padding: 0 16%;
-}
-
-.cont span {
-	margin-left: 1em;
-}
-
-/* .cont section {
-	padding: 1em 0.5em;
-	margin-bottom: 2em;
-	outline: 0.1em solid #E5E3F2;
-	background-color: #FFF;
-} */
-
-/* .cont div {
-	padding: 1em 0.5em;
-	margin-bottom: 2em;
-	outline: 0.1em solid #E5E3F2;
-	background-color: #FFF;
-} */
-
-.fa-heart, .fa-trash-alt, .fa-pencil-alt {
-	margin:1em;
-	float: right;
-	cursor: pointer;
-}
-
-.fa-trash-alt:hover, .fa-pencil-alt:hover {
-	color: #1DA1F2;
-	cursor: pointer;
-}
-
-.red {
-	color: #FC1E26;
-	cursor: pointer;
-}
-
-p {
-	display: inline-block;
-	margin-left: 0.5em;
-}
-#title-inicio{
-	text-align: center;
-    color: #da1d0f;
-    font-size: -webkit-xxx-large;
-    font-family: monospace;
-}
-	/* Estilo de login */
-/* ============================= */
-
-/* .secion{
-  background-color: black;
-} */
-
-.title{
-  text-align: center;
-}
 #logo-login{
-	height: 9em;
-	margin: 6em auto 12px;
-
+	height: 12em;
 }
 
 h1{
-  text-align: center;
-  color: #da1d0f;
+	text-align: center;
+	color: #da1d0f;
 }
 
-/* h3{
-  color: rgb(27, 21, 21);
-} */
-.back {
-  /* background: #e2e2e2; */
-  width: 100%;
-  position: absolute;
-  top: 8%;
-  bottom: 0;
+.divCenter{
+	margin: 0 auto;
 }
 
-.div-center {
-  width: 400px;
-  height: 400px;
-  /* color: white; */
-  /* background-color:black; */
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  max-width: 100%;
-  max-height: 100%;
-  overflow: auto;
-  padding: 1em 2em;
-  /* border-bottom: 2px solid #ccc; */
-  display: table;
+.percentage{
+	width: 80%;
 }
 
-div.content {
-  display: table-cell;
-  vertical-align: middle;
-}
 .btn{
 	margin-bottom: 0.5em;
 }
 .facebook{
 	background-color: #29487d;
+	border-color: transparent;
 }
 .google{
 	background-color: red;
 }
+
 .iniciar{
 	display: inherit;
 	line-height: 2;
 	padding: 0.5em;
 	word-spacing: 3px;
+	color: white;
+	margin: .5rem;
+	display: initial;
 }
 
+.navbar-dark .navbar-nav .nav-link{
+	cursor: pointer;
+}
 
 /* Estilo de Registro */
 /* =================================== */
@@ -193,16 +55,40 @@ div.content {
 	height: 9em;
 	margin: 22px auto 12px;
 }
-.descrip{
-	text-align: center;
-	color: black;
-	font-weight: 600;
-	margin: 0 40px 10px;
-	line-height: 20px;
-	font-size: 17px;
+
+#home{
+	padding-top: 1.5rem; 
 }
 
+#recipeTitle{
+	text-align: center;
+	color: #da1d0f;
+	font-size: 24px;
+	margin: 1rem auto;
+}
 
-textarea {
-	resize: none;
+.card{
+	margin: .5rem 1rem;
+}
+
+.card > img{
+	height: 400px;
+	object-fit: contain;
+}
+
+textarea{
+	max-width: 100%;
+}
+
+.cardPadding{
+	padding-top: .5rem;
+	padding-bottom: .5rem;
+}
+
+.cardPadding > ul > li{
+	padding-right: .7rem;
+}
+
+.red{
+	color: red;
 }
