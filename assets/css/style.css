@@ -92,3 +92,7 @@ textarea{
 .red{
 	color: red;
 }
+
+#profileInfo{
+	float: left;
+}

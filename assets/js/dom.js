@@ -91,3 +91,15 @@ function comentar(id) {
 //   return contador.innerHTML = contadorPublicacion;
 //   })
 // }
+
+document.getElementById('profileBtn').addEventListener('click', () =>{
+document.getElementById('home').style.display = 'none';
+document.getElementById('profilePage').style.display = 'block';
+// document.getElementById('userName').value = user;
+})
+
+document.getElementById('homeBtn').addEventListener('click', () =>{
+  document.getElementById('home').style.display = 'block';
+  document.getElementById('profilePage').style.display = 'none';
+  // document.getElementById('userName').value = user;
+  })
