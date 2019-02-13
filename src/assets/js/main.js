@@ -40,9 +40,7 @@ function guardar() {
       db.collection("publicacion").add({
         title: titulopublicacion,
         text: publicacion,
-        img: url,
-        like: 0,
-        // comments: comentario,
+        img: url
       })
         .then(function (docRef) {
           console.log("Document written with ID: ", docRef.id);
@@ -103,53 +101,57 @@ const timeline = () => {
       </div>
       `
     });
+
+    querySnapshot.forEach((doc) => {
+      likesCount(doc.id)
+    })
   });
 };
 
 
 
-function like(id){
+function like(id) {
+  let uid = firebase.auth().currentUser.uid;
+  toggleStar(id, uid)
+  likesCount(id)
+}
 
-  const heart = document.getElementById("like" + id)
+//like post
+function toggleStar(id, uid) {
+  let route = db.collection("publicacion").doc(id).collection("likes").doc(uid)
+
+  route.get()
+    .then((docSnapshot) => {
+      if (docSnapshot.exists) {
+        route.delete().then(function () {
+          console.log("Like successfully deleted!");
+        }).catch(function (error) {
+          console.error("Error removing document: ", error);
+        });
+      } else {
+        db.collection("publicacion").doc(id).collection("likes").doc(uid).set({})
+      }
+    });
+}
+
+let likesCount = (id) => {
   const contador = document.getElementById("contador" + id)
-  let contadorPublicacion = []
-  if (heart.classList.toggle('red')) {
-    contadorPublicacion.push(1);
-  } else {
-    contadorPublicacion.pop();
-  }
-  return contador.innerHTML = contadorPublicacion.length;
+  let heart = document.getElementById("like" + id)
+  let likes = db.collection("publicacion").doc(id).collection("likes")
+  let userId = firebase.auth().currentUser.uid;
+  let likeFromUser = likes.doc(userId)
+
+  likes.onSnapshot(function (doc) {
+    contador.innerHTML = doc.size
+    likeFromUser.get().then(res => {
+      if (res.exists) {
+        heart.setAttribute("class", "fa fa-heart heart red")
+      } else if (!res.exists) {
+        heart.setAttribute("class", "fa fa-heart heart")
+      }
+    })
+  });
 }
-
-/*
-function guardarComentario(){
-  //Crear nuevo comentario, me gusta, eliminar
-  let comments = document.getElementById('comment').value;
-  document.getElementById('comment').value = '';
-  const cont = document.getElementById('cont');
-  const newComments = document.createElement('div');
-  
-  //Para que aparezca si o si comentario
-  if(comments.length === 0 || comments === null){
-    alert ('Debes ingresar un mensaje');
-    return false;
-  }
-
-  //Crear p nuevo con comentario
-  const contenedorElemento = document.createElement('p');
-  let textNewComment = document.createTextNode(comments);
-  contenedorElemento.appendChild(textNewComment);
-  newComments.appendChild(contenedorElemento);
-  cont.appendChild(newComments);
-
-  db.collection("publicacion").doc(id).push().then(function() {
-    comentario : comments
-  })
-  .then(function() {
-    console.log("Document successfully updated!");
-  })
-}
-*/
 
 //Editar publicacion
 function editar(id, titulopublicacion, publicacion) {
@@ -160,8 +162,7 @@ function editar(id, titulopublicacion, publicacion) {
   alert('Sube para editar tu publicación');
 
   boton.onclick = function () {
-    var washingtonRef = db.collection("publicacion").doc(id);
-    // Set the "capital" field of the city 'DC'
+    let washingtonRef = db.collection("publicacion").doc(id);
     const titulopublicacion = document.getElementById('titulopublicacion').value;
     const publicacion = document.getElementById('publicacion').value;
 
@@ -192,26 +193,3 @@ function eliminar(id) {
     });
   }
 }
-
-
-
-// //like post
-// function toggleStar(docRef, uid) {
-// var docRef = db.collection("publicacion").doc(id) ;
-
-//   docRef.transaction(function(like) {
-//     if (like) {
-//       if (like.stars && like.stars[uid]) {
-//         like.starCount--;
-//         like.stars[uid] = null;
-//       } else {
-//         like.starCount++;
-//         if (!like.stars) {
-//           like.stars = {};
-//         }
-//         like.stars[uid] = true;
-//       }
-//     }
-//     return like;
-//   });
-// }
