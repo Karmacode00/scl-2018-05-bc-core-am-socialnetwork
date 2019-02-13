@@ -27,7 +27,7 @@ function comentar(id) {
     return contadorheart.innerHTML = contadorComentario;
   })
 
-  //Editar
+  //Editar comentario
   const edit = document.createElement('i');
   edit.classList.add('fas', 'fa-pencil-alt');
   //Evento click editar
@@ -51,7 +51,6 @@ function comentar(id) {
         newComments.removeChild(saveButton);
         newComments.appendChild(contenedorElemento);
       }
-      //contenedorElemento.removeAttribute('contentEditable');
     }
 
   })
@@ -79,27 +78,12 @@ function comentar(id) {
 
 }
 
-// function likes() {
-//   let contadorPublicacion = [];
-//   const heart = document.getElementsByClassName('fa-heart');
-//   heart.addEventListener('click', ()=> {
-//   if (heart.classList.toggle('red')){
-//   contadorPublicacion++;
-//   }else{
-//   contadorPublicacion--;
-//   }
-//   return contador.innerHTML = contadorPublicacion;
-//   })
-// }
-
 document.getElementById('profileBtn').addEventListener('click', () =>{
 document.getElementById('home').style.display = 'none';
 document.getElementById('profilePage').style.display = 'block';
-// document.getElementById('userName').value = user;
 })
 
 document.getElementById('homeBtn').addEventListener('click', () =>{
   document.getElementById('home').style.display = 'block';
   document.getElementById('profilePage').style.display = 'none';
-  // document.getElementById('userName').value = user;
   })

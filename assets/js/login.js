@@ -2,11 +2,9 @@ document.addEventListener('DOMContentLoaded', function () {
   bsCustomFileInput.init();
 });
 
-// conexión firebase
 window.onload = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      //Si estamos logueados
       loginPage.style.display = "none";
       buttons.style.display = "block"
       newPostPage.style.display = "block";
@@ -49,7 +47,6 @@ function login() {
 
 facebookLogin.addEventListener("click", () => {
   const provider = new firebase.auth.FacebookAuthProvider();
-  //provider.addScope("user_birthday"); tienen que pedirle permiso a facebook
   provider.setCustomParameters({
     'display': 'popup'
   });

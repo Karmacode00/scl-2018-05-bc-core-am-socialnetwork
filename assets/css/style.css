@@ -96,3 +96,7 @@ textarea{
 #profileInfo{
 	float: left;
 }
+
+.fa, .fas{
+	cursor: pointer;
+}
