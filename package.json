@@ -1,8 +1,11 @@
 {
-  "name": "data-dashboard",
+  "name": "scl-2018-05-bc-core-am-socialnetwork",
   "version": "1.0.0",
-  "main": "src/index.html",
-  "license": "MIT",
+  "description": "social network",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
     "htmlhint": "htmlhint src/*.html test/*.html",
     "eslint": "eslint --ext .js src/ test/",
@@ -18,5 +21,15 @@
     "mocha": "^5.1.1",
     "nyc": "^11.7.1",
     "opener": "^1.4.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Karmacode00/scl-2018-05-bc-core-am-socialnetwork.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Karmacode00/scl-2018-05-bc-core-am-socialnetwork/issues"
+  },
+  "homepage": "https://github.com/Karmacode00/scl-2018-05-bc-core-am-socialnetwork#readme"
 }
