@@ -1,40 +1,23 @@
-document.addEventListener('DOMContentLoaded', function() {
-  bsCustomFileInput.init();
-});
-
-window.onload = () => {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      loginPage.style.display = 'none';
-      buttons.style.display = 'block';
-      newPostPage.style.display = 'block';
-      home.style.display = 'block';
-      profilePage.style.display = 'none';
-      registerPage.style.display = 'none';
-      timeline();
-    } else {
-      loginPage.style.display = 'block';
-      buttons.style.display = 'none';
-      home.style.display = 'none';
-      newPostPage.style.display = 'none';
-      profilePage.style.display = 'none';
-      registerPage.style.display = 'none';
-    }
-  });
+// Registro de usuario
+export function register() {
+  const emailValue = registerEmail.value;
+  const passwordValue = registerPassword.value;
+  // const usuarioValue =  registerUser.value;
+  firebase.auth().createUserWithEmailAndPassword(emailValue, passwordValue)
+    .then(() => {
+      console.log('Usuario registrado');
+    })
+    .catch((error) => {
+      console.log('Error de firebase > ' + error.code);
+      console.log('Error de firebase, mensaje > ' + error.message);
+    });
 };
 
-function login() {
+export function login() {
   const emailValue = email.value;
   const passwordValue = password.value;
   firebase.auth().signInWithEmailAndPassword(emailValue, passwordValue)
     .then(() => {
-      loginPage.style.display = 'none';
-      buttons.style.display = 'block';
-      newPostPage.style.display = 'block';
-      home.style.display = 'block';
-      profilePage.style.display = 'none';
-      registerPage.style.display = 'none';
-      timeline();
       console.log('Usuario con login exitoso');
     })
     .catch((error) => {
@@ -45,28 +28,22 @@ function login() {
   return false;
 }
 
-facebookLogin.addEventListener('click', () => {
+export function facebookLogin() {
   const provider = new firebase.auth.FacebookAuthProvider();
   provider.setCustomParameters({
     'display': 'popup'
   });
   firebase.auth().signInWithPopup(provider)
     .then(() => {
-      loginPage.style.display = 'none';
-      buttons.style.display = 'block';
-      newPostPage.style.display = 'block';
-      home.style.display = 'block';
-      profilePage.style.display = 'none';
-      registerPage.style.display = 'none';
-      timeline();
+      console.log('Usuario logueado > ' + JSON.stringify(user));
     })
     .catch((error) => {
       console.log('Error de firebase > ' + error.code);
       console.log('Error de firebase, mensaje > ' + error.message);
     });
-});
+};
 
-googleLogin.addEventListener('click', () => {
+export function googleLogin() {
   var provider = new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({
     'login_hint': 'user@example.com'
@@ -77,14 +54,6 @@ googleLogin.addEventListener('click', () => {
       var token = result.credential.accessToken;
       // The signed-in user info.
       var user = result.user;
-      // ...
-      loginPage.style.display = 'none';
-      buttons.style.display = 'block';
-      newPostPage.style.display = 'block';
-      home.style.display = 'block';
-      profilePage.style.display = 'none';
-      registerPage.style.display = 'none';
-      timeline();
     })
     .catch((error) => {
       // Handle Errors here.
@@ -96,43 +65,13 @@ googleLogin.addEventListener('click', () => {
       var credential = error.credential;
       // ...
     });
-});
+};
 
 // Cerrar sesión
-logoutBtn.addEventListener('click', () => {
+export function logout() {
   firebase.auth().signOut()
     .then(() => {
       console.log('Logout exitoso');
-      loginPage.style.display = 'block';
-      buttons.style.display = 'none';
-      newPostPage.style.display = 'none';
-      home.style.display = 'none';
-      profilePage.style.display = 'none';
-      registerPage.style.display = 'none';
     })
     .catch();
-});
-
-// Registro de usuario
-registration.addEventListener('click', () => {
-  loginPage.style.display = 'none';
-  buttons.style.display = 'none';
-  newPostPage.style.display = 'none';
-  home.style.display = 'none';
-  profilePage.style.display = 'none';
-  registerPage.style.display = 'block';
-
-  register.addEventListener('click', () => {
-    const emailValue = registerEmail.value;  
-    const passwordValue = registerPassword.value;
-    // const usuarioValue =  registerUser.value;
-    firebase.auth().createUserWithEmailAndPassword(emailValue, passwordValue)
-      .then(() => {
-        console.log('Usuario registrado');
-      })
-      .catch((error) => {
-        console.log('Error de firebase > ' + error.code);
-        console.log('Error de firebase, mensaje > ' + error.message);
-      });
-  });
-});
+};

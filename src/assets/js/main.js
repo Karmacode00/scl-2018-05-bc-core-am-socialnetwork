@@ -1,194 +1,269 @@
-firebase.initializeApp({
-  apiKey: 'AIzaSyAsyUFU3YRE0ZFQBsX06RIr0jkZIwNDZrI',
-  authDomain: 'foodgram-65316.firebaseapp.com',
-  databaseURL: 'https://foodgram-65316.firebaseio.com',
-  projectId: 'foodgram-65316',
-  storageBucket: 'foodgram-65316.appspot.com',
-  messagingSenderId: '186832450814'
+import { register, login, facebookLogin, googleLogin, logout } from './login.js';
+import { guardar, leerPosts, toggleStar, totalLikes, editarPublicacion, eliminarPublicacion } from './data.js';
+
+document.addEventListener('DOMContentLoaded', function() {
+  bsCustomFileInput.init();
 });
 
-// Initialize Cloud Firestore through Firebase
-var db = firebase.firestore();
+window.onload = () => {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      loginPage.style.display = 'none';
+      buttons.style.display = 'block';
+      newPostPage.style.display = 'block';
+      home.style.display = 'block';
+      profilePage.style.display = 'none';
+      registerPage.style.display = 'none';
+      timeline();
+    } else {
+      loginPage.style.display = 'block';
+      buttons.style.display = 'none';
+      home.style.display = 'none';
+      newPostPage.style.display = 'none';
+      profilePage.style.display = 'none';
+      registerPage.style.display = 'none';
+    }
+  });
+};
 
-// Cerrar sesión
-function logout() {
-  firebase.auth().signOut()
-    .then(() => {
-      console.log('Logout exitoso');
-      { window.location = 'login.html'; }
-    })
-    .catch();
-}
-// guardando en firebase imagen, titulo, texto
-function guardar() {
+loginBtn.addEventListener('click', () => {
+  login();
+});
+
+facebookLoginBtn.addEventListener('click', () => {
+  facebookLogin();
+});
+
+googleLoginBtn.addEventListener('click', () => {
+  googleLogin();
+});
+
+logoutBtn.addEventListener('click', () => {
+  logout();
+  loginPage.style.display = 'block';
+  buttons.style.display = 'none';
+  newPostPage.style.display = 'none';
+  home.style.display = 'none';
+  profilePage.style.display = 'none';
+  registerPage.style.display = 'none';
+});
+
+// Registro de usuario
+registration.addEventListener('click', () => {
+  loginPage.style.display = 'none';
+  buttons.style.display = 'none';
+  newPostPage.style.display = 'none';
+  home.style.display = 'none';
+  profilePage.style.display = 'none';
+  registerPage.style.display = 'block';
+  registerBtn.addEventListener('click', () => {
+    register();
+  });
+});
+
+btnPublicar.addEventListener('click', () => {
   const custom = customFile.files[0];
   const fileName = custom.name;
   const metadata = {
     contentType: custom.type
   };
-  const task = firebase.storage().ref('images')
-    .child(fileName)
-    .put(custom, metadata);
-  task.then(snapshot => snapshot.ref.getDownloadURL()) // obtenemos la url de descarga (de la imagen)
-    .then(url => {
-      console.log('URL del archivo > ' + url);
-      const titulopublicacion = document.getElementById('titulopublicacion').value;
-      document.getElementById('titulopublicacion').value = '';
-      const publicacion = document.getElementById('publicacion').value;
-      document.getElementById('publicacion').value = '';
 
-      db.collection('publicacion').add({
-        title: titulopublicacion,
-        text: publicacion,
-        img: url
-      })
-        .then(function(docRef) {
-          console.log('Document written with ID: ', docRef.id);
-        })
-        .catch(function(error) {
-          console.error('Error adding document: ', error);
-        });
-    });
-};
+  guardar(custom, fileName, metadata);
+});
 
 // leer documentos
 const timeline = () => {
   let card = document.getElementById('cardPublicacion');
-  db.collection('publicacion').onSnapshot((querySnapshot) => {
+  leerPosts((querySnapshot) => {
     card.innerHTML = '';
     querySnapshot.forEach((doc) => {
       card.innerHTML += `
-      <div class="card col-lg-3">
-        <img class="img-thumbnail" src="${doc.data().img}"text=Image cap" alt="Card image cap">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12 justify-content-start cardPadding">
-              <h4 class="card-title">${doc.data().title}</h4>
-              <p class="card-text">${doc.data().text}</p>
-            </div>
-          </div>
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12 justify-content-start cardPadding">
-                <ul class="nav">
-                    <li class="fa fa-heart heart" id="like${doc.id}" onclick="like('${doc.id}')";"></li><span id="contador${doc.id}"></span>
-                    <li class="fas fa-trash-alt" onclick="eliminar('${doc.id}')"></i>
-                    <li class="fas fa-pencil-alt" onclick="editar('${doc.id}', '${doc.data().title}', '${doc.data().text}')"></i>
-                  </ul>
-            </div>
-          </div>
-        </div>
-
-        <section class="center">
+        <div class="card col-lg-3">
+          <img class="img-thumbnail" src="${doc.data().img}"text=Image cap" alt="Card image cap">
           <div class="container">
             <div class="row">
-              <div class="col-12">
-                <textarea class="txt" id="comment${doc.id}" placeholder="Añade un comentario..."></textarea>
+              <div class="col-lg-12 justify-content-start cardPadding">
+                <h4 class="card-title">${doc.data().title}</h4>
+                <p class="card-text">${doc.data().text}</p>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <button type="submit" class="btn" id="btncomentario" onclick="comentar('${doc.id}')">
-                <i class="fas fa-plus" aria-hidden="true"></i> Comentar</button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12" id="cont${doc.id}"></div>
             </div>
           </div>
-        </section>
-      </div>
-      `;
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 justify-content-start cardPadding">
+                  <ul class="nav">
+                      <li class="fa fa-heart heart" id="like${doc.id}"></li><span id="contador${doc.id}"></span>
+                      <li class="fas fa-trash-alt" id="eliminar${doc.id}"></i>
+                      <li class="fas fa-pencil-alt" id="editar${doc.id}"></i>
+                    </ul>
+              </div>
+            </div>
+          </div>
+  
+          <section class="center">
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <textarea class="txt" id="comment${doc.id}" placeholder="Añade un comentario..."></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <button type="submit" class="btn" id="comentar${doc.id}">
+                  <i class="fas fa-plus" aria-hidden="true"></i> Comentar</button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12" id="cont${doc.id}"></div>
+              </div>
+            </div>
+          </section>
+        </div>
+        `;
     });
 
     querySnapshot.forEach((doc) => {
       likesCount(doc.id);
+      like(doc.id);
+      eliminar(doc.id);
+      editar(doc.id, doc.data().title, doc.data().text);
+      comentar(doc.id);
     });
   });
 };
 
-
 function like(id) {
-  let uid = firebase.auth().currentUser.uid;
-  toggleStar(id, uid);
-  likesCount(id);
-}
+  let likeBtn = document.getElementById('like' + id);
 
-// like post
-function toggleStar(id, uid) {
-  let route = db.collection('publicacion').doc(id).collection('likes').doc(uid);
-
-  route.get()
-    .then((docSnapshot) => {
-      if (docSnapshot.exists) {
-        route.delete().then(function() {
-          console.log('Like successfully deleted!');
-        }).catch(function(error) {
-          console.error('Error removing document: ', error);
-        });
-      } else {
-        db.collection('publicacion').doc(id).collection('likes').doc(uid).set({});
-      }
-    });
+  likeBtn.addEventListener('click', () => {
+    let uid = firebase.auth().currentUser.uid;
+    toggleStar(id, uid);
+    likesCount(id);
+  });
 }
 
 let likesCount = (id) => {
-  const contador = document.getElementById('contador' + id);
-  let heart = document.getElementById('like' + id);
-  let likes = db.collection('publicacion').doc(id).collection('likes');
-  let userId = firebase.auth().currentUser.uid;
-  let likeFromUser = likes.doc(userId);
+  totalLikes(id);
+};
 
-  likes.onSnapshot(function(doc) {
-    contador.innerHTML = doc.size;
-    likeFromUser.get().then(res => {
-      if (res.exists) {
-        heart.setAttribute('class', 'fa fa-heart heart red');
-      } else if (!res.exists) {
-        heart.setAttribute('class', 'fa fa-heart heart');
-      }
+function editar(id, titulopublicacion, publicacion) {
+  let editBtn = document.getElementById('editar' + id);
+    
+  editBtn.addEventListener('click', () => {
+    document.getElementById('titulopublicacion').value = titulopublicacion;
+    document.getElementById('publicacion').value = publicacion;
+    const boton = document.getElementById('btnPublicar');
+    boton.innerHTML = 'Editar';
+    alert('Sube para editar tu publicación');
+    
+    boton.addEventListener('click', () => {
+      const titulopublicacion = document.getElementById('titulopublicacion').value;
+      const publicacion = document.getElementById('publicacion').value;
+      editarPublicacion(id, titulopublicacion, publicacion);
+      boton.innerHTML = 'Guardar';
     });
   });
 };
 
-// Editar publicacion
-function editar(id, titulopublicacion, publicacion) {
-  document.getElementById('titulopublicacion').value = titulopublicacion;
-  document.getElementById('publicacion').value = publicacion;
-  const boton = document.getElementById('btnPublicar');
-  boton.innerHTML = 'Editar';
-  alert('Sube para editar tu publicación');
-
-  boton.onclick = function() {
-    let washingtonRef = db.collection('publicacion').doc(id);
-    const titulopublicacion = document.getElementById('titulopublicacion').value;
-    const publicacion = document.getElementById('publicacion').value;
-
-    return washingtonRef.update({
-      title: titulopublicacion,
-      text: publicacion,
-    })
-      .then(function() {
-        console.log('Document successfully updated!');
-        boton.innerHTML = 'Guardar';
-        document.getElementById('titulopublicacion').value = '';
-        document.getElementById('publicacion').value = '';
-      })
-      .catch(function(error) {
-        // The document probably doesn't exist.
-        console.error('Error updating document: ', error);
-      });
-  };
-}
-
 function eliminar(id) {
-  let confirmarEliminar = confirm('¿Estas seguro de eliminar?');
-  if (confirmarEliminar === true) {
-    db.collection('publicacion').doc(id).delete().then(function() {
-      console.log('Document successfully deleted!');
-    }).catch(function(error) {
-      console.error('Error removing document: ', error);
-    });
-  }
+  let deleteBtn = document.getElementById('eliminar' + id);
+
+  deleteBtn.addEventListener('click', () => {
+    let confirmarEliminar = confirm('¿Estas seguro de eliminar?');
+    if (confirmarEliminar === true) {
+      eliminarPublicacion(id);
+    }
+  });
 }
+
+// Crear nuevo comentario, me gusta, eliminar
+function comentar(id) {
+  let commentBtn = document.getElementById('comentar' + id);
+
+  commentBtn.addEventListener('click', () => {
+    let comments = document.getElementById('comment' + id).value;
+    document.getElementById('comment' + id).value = '';
+    const cont = document.getElementById('cont' + id);
+    const newComments = document.createElement('div');
+    
+    // Para que aparezca si o si comentario
+    if (comments.length === 0 || comments === null) {
+      alert('Debes ingresar un mensaje');
+      return false;
+    }
+    
+    // corazon
+    const heart = document.createElement('i');
+    const contadorheart = document.createElement('span');
+    heart.appendChild(contadorheart);
+    heart.classList.add('fa', 'fa-heart', 'heart');
+    // evento click corazon
+    let contadorComentario = [];
+    heart.addEventListener('click', () => {
+      if (heart.classList.toggle('red')) {
+        contadorComentario++;
+      } else {
+        contadorComentario--;
+      }
+      return contadorheart.innerHTML = contadorComentario;
+    });
+    
+    // Editar comentario
+    const edit = document.createElement('i');
+    edit.classList.add('fas', 'fa-pencil-alt');
+    // Evento click editar
+    edit.addEventListener('click', () => {
+      contenedorElemento.contentEditable = true;
+      let confirmarEditar = confirm('¿Estas seguro que quieres modificar tu comentario?');
+      if (confirmarEditar === true) {
+        const editComment = contenedorElemento.textContent;
+        const newCommentEdit = document.createElement('input');
+        newCommentEdit.setAttribute('type', 'text');
+        newCommentEdit.value = editComment;
+        newComments.removeChild(contenedorElemento);
+        newComments.appendChild(newCommentEdit);
+        const saveButton = document.createElement('button');
+        saveButton.textContent = 'Guardar';
+        newComments.appendChild(saveButton);
+        saveButton.onclick = () => {
+          const editedComment = newCommentEdit.value;
+          contenedorElemento.textContent = editedComment;
+          newComments.removeChild(newCommentEdit);
+          newComments.removeChild(saveButton);
+          newComments.appendChild(contenedorElemento);
+        };
+      }
+    });
+    
+    // Basura
+    const trash = document.createElement('i');
+    trash.classList.add('fa', 'fa-trash', 'trash');
+    // Evento click basura
+    trash.addEventListener('click', () => {
+      let confirmarEliminar = confirm('¿Estas seguro de eliminar?');
+      if (confirmarEliminar === true) {
+        cont.removeChild(newComments);
+      }
+    });
+    
+    // Crear p nuevo con comentario
+    const contenedorElemento = document.createElement('p');
+    let textNewComment = document.createTextNode(comments);
+    contenedorElemento.appendChild(textNewComment);
+    newComments.appendChild(heart);
+    newComments.appendChild(edit);
+    newComments.appendChild(trash);
+    newComments.appendChild(contenedorElemento);
+    cont.appendChild(newComments);
+  });
+}
+
+document.getElementById('profileBtn').addEventListener('click', () => {
+  document.getElementById('home').style.display = 'none';
+  document.getElementById('profilePage').style.display = 'block';
+});
+
+document.getElementById('homeBtn').addEventListener('click', () => {
+  document.getElementById('home').style.display = 'block';
+  document.getElementById('profilePage').style.display = 'none';
+});

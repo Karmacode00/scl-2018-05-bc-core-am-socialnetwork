@@ -9,20 +9,20 @@
   <title>FoodGram</title>
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
   <!-- link de fontawesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
   <!-- Link de iconos -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
-    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+    integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   <!-- Mi estilo -->
   <link rel="stylesheet" href="./assets/css/style.css">
 
-<title>Foodgram</title>
+  <title>Foodgram</title>
 
 </head>
 
@@ -32,7 +32,8 @@
   <section id="loginPage" class="container">
     <div class="row">
       <div class="col-lg-12 mx-auto">
-        <img id="logo-login" src="./assets/img/Sogbu Restaurant Logo (2).jpg" class="rounded mx-auto d-block" alt="logo de FoodGram">
+        <img id="logo-login" src="./assets/img/Sogbu Restaurant Logo (2).jpg" class="rounded mx-auto d-block"
+          alt="logo de FoodGram">
         <h1>FoodGram</h1>
         <hr>
         <form>
@@ -55,7 +56,7 @@
           <div class="container">
             <div class="row">
               <div class="col-lg-6 mx-auto textAlign">
-                <button onclick="login()" type="button" class="btn btn-outline-danger">Iniciar Sesión</button>
+                <button id="loginBtn" type="button" class="btn btn-outline-danger">Iniciar Sesión</button>
                 <hr>
                 <button id="registration" type="button" class="btn btn-link"> Registro</button>
                 <button type="button" class="btn btn-link">Restablecer Contraseña</button>
@@ -68,10 +69,10 @@
             <div class="row">
               <div class="col-lg-10 mx-auto textAlign">
                 <!-- Login Facebook -->
-                <button id="facebookLogin" type="button" class=" btn btn-primary iniciar facebook">
+                <button id="facebookLoginBtn" type="button" class=" btn btn-primary iniciar facebook">
                   <i class="fab fa-facebook-square" style="color:white;"></i> Inicar sesión con Facebook</button>
                 <!--  login Google -->
-                <button id="googleLogin" type="button" class="btn btn-danger iniciar google">
+                <button id="googleLoginBtn" type="button" class="btn btn-danger iniciar google">
                   <i class="fab fa-google" style="color: white;"></i> Iniciar sesion con Google</button>
               </div>
             </div>
@@ -105,7 +106,7 @@
             <label for="exampleInputPassword1">Contraseña</label>
             <input type="password" class="form-control" id="registerPassword" placeholder="Password" pattern="[0-9]{8}">
           </div>
-          <button id="register" type="button" class="btn btn-primary"> Registrate</button>
+          <button id="registerBtn" type="button" class="btn btn-primary"> Registrate</button>
           <hr>
         </form>
       </div>
@@ -151,10 +152,12 @@
               <label class="custom-file-label" for="customFile">Choose file</label>
             </div>
           </div>
-          <input type="text" id="titulopublicacion" placeholder="Añade un titulo a la receta..." class="form-control my-3 divCenter percentage">
-          <input type="text" id="publicacion" placeholder="Agrega acá tu publicación..." class="form-control my-3 divCenter percentage">
+          <input type="text" id="titulopublicacion" placeholder="Añade un titulo a la receta..."
+            class="form-control my-3 divCenter percentage">
+          <input type="text" id="publicacion" placeholder="Agrega acá tu publicación..."
+            class="form-control my-3 divCenter percentage">
           <div class="textAlign">
-            <button class="btn btn-info textAlign" id="btnPublicar" onclick="guardar()">Publicar</button>
+            <button class="btn btn-info textAlign" id="btnPublicar">Publicar</button>
           </div>
         </div>
       </div>
@@ -201,7 +204,10 @@
 
 
   <!-- js firebase -->
-  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+  <!-- Firestore -->
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
   <script>
     // Initialize Firebase
     var config = {
@@ -215,25 +221,24 @@
     firebase.initializeApp(config);
   </script>
 
-  <!-- Firestore -->
-  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
-
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
     crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"
+    integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
     crossorigin="anonymous"></script>
   <!-- File input -->
   <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://use.fontawesome.com/7873633050.js"></script>
-  <script src="./assets/js/login.js"></script>
-  <script src="./assets/js/main.js"></script>
-  <script src="./assets/js/dom.js"></script>
+  <script src="./assets/js/main.js" type="module"></script>
+  <script src="./assets/js/login.js" type="module"></script>
+  <script src="./assets/js/data.js" type="module"></script>
 </body>
 
 </html>

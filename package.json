@@ -6,20 +6,30 @@
   "directories": {
     "test": "test"
   },
+  "jest": {
+    "verbose": true,
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ]
+  },
   "scripts": {
     "htmlhint": "htmlhint src/*.html test/*.html",
     "eslint": "eslint --ext .js src/ test/",
     "pretest": "npm run eslint && npm run htmlhint",
     "test-browser": "opener ./test/index.html",
     "test-node": "nyc mocha ./test/headless.js && nyc report --reporter=html",
-    "test": "npm run test-node && npm run test-browser"
+    "test": "jest"
   },
   "dependencies": {
+    "babel-jest": "^24.1.0",
     "chai": "^4.1.2",
     "eslint": "^4.19.1",
+    "firebase": "^5.8.4",
     "htmlhint": "^0.10.1",
-    "mocha": "^5.1.1",
-    "nyc": "^11.7.1",
+    "jest-esnext": "0.0.4",
+    "mock-cloud-firestore": "^0.9.2",
+    "nyc": "^13.3.0",
     "opener": "^1.4.3"
   },
   "repository": {
@@ -31,5 +41,19 @@
   "bugs": {
     "url": "https://github.com/Karmacode00/scl-2018-05-bc-core-am-socialnetwork/issues"
   },
-  "homepage": "https://github.com/Karmacode00/scl-2018-05-bc-core-am-socialnetwork#readme"
+  "homepage": "https://github.com/Karmacode00/scl-2018-05-bc-core-am-socialnetwork#readme",
+  "devDependencies": {
+    "@types/jest": "^24.0.9",
+    "firebase-functions-test": "^0.1.6",
+    "firebase-mock": "^2.2.10",
+    "jest": "^24.1.0",
+    "mocha": "^5.2.0",
+    "ts-jest": "^24.0.0"
+  },
+  "transform": {
+    "^.+\\.jsx?$": "babel-jest"
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  }
 }
